@@ -121,7 +121,47 @@ and tools for oddly specific problems I decided needed solving.
         <h2 id="music-title">Music</h2>
         <p>A small corner for artists, listening links, and whatever I have on repeat.</p>
       </div>
+<div class="window lastfm-window">
+  <div class="window-titlebar">
+    <span>lastfm.exe</span>
+    <span class="lastfm-live-label">● LIVE</span>
+  </div>
 
+  <div class="window-body">
+
+    <div class="lastfm-header">
+      <div>
+        <strong>recent listening</strong>
+        <p>latest 3 tracks from Last.fm</p>
+      </div>
+
+      <a
+        class="lastfm-profile-link"
+        href="https://www.last.fm/user/MintyCorpse"
+        target="_blank"
+      >
+        MintyCorpse ↗
+      </a>
+    </div>
+
+    <div id="lastfmFeed" class="lastfm-feed">
+      <p class="lastfm-loading">
+        checking Last.fm...
+      </p>
+    </div>
+
+    <div class="lastfm-footer">
+      <span id="lastfmUpdated">
+        waiting for signal...
+      </span>
+
+      <button id="refreshLastfm" type="button">
+        ↻ refresh
+      </button>
+    </div>
+
+  </div>
+</div>
       <div class="music-grid">
         <div class="window">
           <div class="window-titlebar">

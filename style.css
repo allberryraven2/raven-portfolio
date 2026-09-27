@@ -970,3 +970,240 @@ body {
     font-size: 15px;
   }
 }
+/* =====================================================
+   LAST.FM LIVE FEED
+   ===================================================== */
+
+.lastfm-window {
+  margin-bottom: 20px;
+}
+
+.lastfm-live-label {
+  font-family: "Courier New", Courier, monospace;
+  font-size: 11px;
+  color: #3f672c;
+  font-weight: bold;
+}
+
+.lastfm-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 14px;
+  margin-bottom: 16px;
+}
+
+.lastfm-header strong {
+  font-family: Tahoma, Verdana, Arial, sans-serif;
+  font-size: 18px;
+}
+
+.lastfm-header p {
+  margin: 4px 0 0;
+  color: #616758;
+  font-size: 13px;
+}
+
+.lastfm-profile-link {
+  color: #4f6d31;
+  font-size: 13px;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.lastfm-feed {
+  display: grid;
+  gap: 10px;
+}
+
+.lastfm-track {
+  display: grid;
+  grid-template-columns: 30px 58px 1fr;
+  align-items: center;
+  gap: 11px;
+
+  padding: 9px;
+
+  border: 2px solid var(--line);
+  border-radius: 6px;
+
+  color: var(--ink);
+  text-decoration: none;
+
+  background:
+    linear-gradient(
+      180deg,
+      #fffef4,
+      #e2dec3
+    );
+}
+
+.lastfm-track:hover {
+  background:
+    linear-gradient(
+      180deg,
+      #f4ffd8,
+      #c5d989
+    );
+}
+
+.lastfm-track.now-playing {
+  background:
+    linear-gradient(
+      180deg,
+      #fff0d4,
+      #ffc176
+    );
+
+  border-color: #48250d;
+}
+
+.lastfm-number {
+  font-family: "Courier New", Courier, monospace;
+  font-size: 13px;
+  font-weight: bold;
+  text-align: center;
+  color: #68705d;
+}
+
+.lastfm-track.now-playing .lastfm-number {
+  color: #d75c08;
+}
+
+.lastfm-art {
+  width: 58px;
+  height: 58px;
+
+  object-fit: cover;
+
+  border: 2px solid var(--line);
+  border-radius: 4px;
+}
+
+.lastfm-art-empty {
+  display: grid;
+  place-items: center;
+
+  background: #cbd59b;
+
+  font-size: 25px;
+}
+
+.lastfm-track-info {
+  min-width: 0;
+  display: grid;
+  gap: 3px;
+}
+
+.lastfm-track-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 9px;
+}
+
+.lastfm-track-top strong {
+  font-family: Tahoma, Verdana, Arial, sans-serif;
+  font-size: 15px;
+
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.lastfm-time {
+  flex-shrink: 0;
+
+  font-family: "Courier New", Courier, monospace;
+  font-size: 10px;
+  color: #666d5e;
+}
+
+.lastfm-time.now-playing {
+  color: #cf5706;
+  font-weight: bold;
+}
+
+.lastfm-artist {
+  font-size: 13px;
+  font-weight: bold;
+  color: #3f4936;
+}
+
+.lastfm-album {
+  font-size: 11px;
+  color: #777b70;
+
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.lastfm-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+
+  margin-top: 13px;
+
+  font-family: "Courier New", Courier, monospace;
+  font-size: 10px;
+
+  color: #606756;
+}
+
+#refreshLastfm {
+  border: 0;
+  background: none;
+
+  font-family: "Courier New", Courier, monospace;
+  font-size: 11px;
+  font-weight: bold;
+
+  color: #486630;
+
+  cursor: pointer;
+}
+
+#refreshLastfm:disabled {
+  opacity: .55;
+}
+
+.lastfm-loading,
+.lastfm-error {
+  margin: 0;
+  padding: 18px;
+
+  border: 2px dashed #8b917a;
+
+  text-align: center;
+  color: #646b5d;
+
+  font-family: "Courier New", Courier, monospace;
+  font-size: 12px;
+}
+
+@media (max-width: 520px) {
+  .lastfm-header {
+    flex-direction: column;
+  }
+
+  .lastfm-track {
+    grid-template-columns: 23px 52px 1fr;
+    gap: 8px;
+  }
+
+  .lastfm-art {
+    width: 52px;
+    height: 52px;
+  }
+
+  .lastfm-track-top {
+    display: grid;
+    gap: 3px;
+  }
+
+  .lastfm-time {
+    order: -1;
+  }
+}

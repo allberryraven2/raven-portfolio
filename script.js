@@ -244,7 +244,173 @@ function renderMusicLinks() {
 
   root.innerHTML = MUSIC_LINKS.map(makeLinkButton).join("");
 }
+// ======================================================
+// LAST.FM LIVE FEED
+// ======================================================
 
+const LASTFM_REFRESH_INTERVAL = 60 * 1000;
+
+function escapeLastfmHtml(value) {
+  return String(value ?? "")
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("'", "&#039;");
+}
+
+function formatLastfmTime(timestamp) {
+  if (!timestamp) {
+    return "";
+  }
+
+  const date = new Date(timestamp);
+
+  return date.toLocaleTimeString([], {
+    hour: "numeric",
+    minute: "2-digit"
+  });
+}
+
+function renderLastfmTracks(tracks) {
+  const feed = document.getElementById("lastfmFeed");
+
+  if (!feed) return;
+
+  if (!Array.isArray(tracks) || tracks.length === 0) {
+    feed.innerHTML = `
+      <p class="lastfm-error">
+        No recent tracks found.
+      </p>
+    `;
+    return;
+  }
+
+  feed.innerHTML = tracks.map((track, index) => {
+    const title = escapeLastfmHtml(track.name);
+    const artist = escapeLastfmHtml(track.artist);
+    const album = escapeLastfmHtml(track.album);
+    const url = escapeLastfmHtml(track.url);
+    const albumArt = escapeLastfmHtml(track.albumArt);
+
+    const timeText = track.nowPlaying
+      ? "NOW PLAYING"
+      : formatLastfmTime(track.timestamp);
+
+    const statusClass = track.nowPlaying
+      ? "now-playing"
+      : "";
+
+    const number = String(index + 1).padStart(2, "0");
+
+    return `
+      <a
+        class="lastfm-track ${statusClass}"
+        href="${url}"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <div class="lastfm-number">
+          ${track.nowPlaying ? "▶" : number}
+        </div>
+
+        ${
+          albumArt
+            ? `
+              <img
+                class="lastfm-art"
+                src="${albumArt}"
+                alt=""
+                loading="lazy"
+              >
+            `
+            : `
+              <div class="lastfm-art lastfm-art-empty">
+                ♪
+              </div>
+            `
+        }
+
+        <div class="lastfm-track-info">
+          <div class="lastfm-track-top">
+            <strong>${title}</strong>
+
+            <span class="lastfm-time ${statusClass}">
+              ${timeText}
+            </span>
+          </div>
+
+          <span class="lastfm-artist">
+            ${artist}
+          </span>
+
+          ${
+            album
+              ? `<span class="lastfm-album">${album}</span>`
+              : ""
+          }
+        </div>
+      </a>
+    `;
+  }).join("");
+}
+
+async function loadLastfmTracks() {
+  const feed = document.getElementById("lastfmFeed");
+  const updated = document.getElementById("lastfmUpdated");
+  const refreshButton = document.getElementById("refreshLastfm");
+
+  if (!feed) return;
+
+  if (refreshButton) {
+    refreshButton.disabled = true;
+    refreshButton.textContent = "↻ checking...";
+  }
+
+  try {
+    const response = await fetch(
+      "/.netlify/functions/lastfm-recent",
+      {
+        cache: "no-store"
+      }
+    );
+
+    if (!response.ok) {
+      throw new Error(
+        `Last.fm returned ${response.status}`
+      );
+    }
+
+    const data = await response.json();
+
+    renderLastfmTracks(data.tracks);
+
+    if (updated) {
+      updated.textContent =
+        `updated ${new Date().toLocaleTimeString([], {
+          hour: "numeric",
+          minute: "2-digit"
+        })}`;
+    }
+  } catch (error) {
+    console.error("Last.fm feed error:", error);
+
+    feed.innerHTML = `
+      <p class="lastfm-error">
+        couldn't reach Last.fm right now :(
+      </p>
+    `;
+
+    if (updated) {
+      updated.textContent = "connection failed";
+    }
+  } finally {
+    if (refreshButton) {
+      refreshButton.disabled = false;
+      refreshButton.textContent = "↻ refresh";
+    }
+  }
+}
 // ======================================================
 // INITIALIZE
 // ======================================================
@@ -255,3 +421,16 @@ renderProjects();
 renderLinkGroups();
 renderMusicLinks();
 showPage(routeFromHash());
+loadLastfmTracks();
+
+setInterval(
+  loadLastfmTracks,
+  LASTFM_REFRESH_INTERVAL
+);
+
+document
+  .getElementById("refreshLastfm")
+  ?.addEventListener(
+    "click",
+    loadLastfmTracks
+  );
