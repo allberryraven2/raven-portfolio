@@ -369,7 +369,7 @@ async function loadLastfmTracks() {
 
   try {
     const response = await fetch(
-  "https://raven-lastfm.allberryraven2.workers.dev",
+  "/api/lastfm",
   {
     cache: "no-store"
   }
