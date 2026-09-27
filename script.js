@@ -369,11 +369,11 @@ async function loadLastfmTracks() {
 
   try {
     const response = await fetch(
-      "/.netlify/functions/lastfm-recent",
-      {
-        cache: "no-store"
-      }
-    );
+  "https://raven-lastfm.allberryraven2.workers.dev",
+  {
+    cache: "no-store"
+  }
+);
 
     if (!response.ok) {
       throw new Error(
