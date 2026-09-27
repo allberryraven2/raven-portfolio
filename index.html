@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#10140f" />
+  <title>Raven | Projects & Links</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <div class="desktop-noise" aria-hidden="true"></div>
+
+  <main class="shell">
+    <header class="topbar window">
+      <a class="brand" href="#home" aria-label="Raven home">
+        <span class="brand-dot"></span>
+        <span>Raven.exe</span>
+      </a>
+
+      <nav class="nav" aria-label="Main navigation">
+        <a href="#home" data-route="home">home</a>
+        <a href="#projects" data-route="projects">projects</a>
+        <a href="#links" data-route="links">links</a>
+        <a href="#music" data-route="music">music</a>
+      </nav>
+
+<div class="desktop-status" aria-hidden="true">
+  <span>● online</span>
+</div>
+
+</header>
+
+    <section id="home" class="page active" aria-labelledby="home-title">
+      <div class="window hero-window">
+        <div class="window-titlebar">
+          <span>Raven / profile</span>
+          <span class="window-icons" aria-hidden="true">□ ─ ×</span>
+        </div>
+
+        <div class="hero-grid">
+          <div class="profile-photo-wrap">
+  <div class="avatar-placeholder" aria-label="Avatar placeholder">
+    <span>R</span>
+  </div>
+  <span class="photo-caption">profile_pic.png</span>
+</div>
+
+          <div class="hero-copy">
+            <p class="eyebrow">hello, i'm</p>
+            <h1 id="home-title">Raven</h1>
+            <p class="subtitle">coder • crocheter • uhhhh</p>
+            <p>
+              I make Discord bots, little websites, digital stuff,
+and tools for oddly specific problems I decided needed solving.
+            </p>
+
+            <div class="button-row">
+              <a class="btn primary" href="#projects">open projects</a>
+              <a class="btn" href="#links">browse links</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="home-grid">
+        <div class="window">
+          <div class="window-titlebar">
+            <span>currently.txt</span>
+            <span class="window-icons" aria-hidden="true">□ ─ ×</span>
+          </div>
+          <div class="window-body status-list">
+            <p>⌨ building Discord bots</p>
+            <p>🌐 making web tools</p>
+            <p>🧶 crocheting something</p>
+            <p>🎮 probably playing TF2</p>
+          </div>
+        </div>
+
+        <div class="window">
+          <div class="window-titlebar">
+            <span>skills.ini</span>
+            <span class="window-icons" aria-hidden="true">□ ─ ×</span>
+          </div>
+          <div class="window-body tag-cloud">
+            <span>JavaScript</span>
+            <span>TypeScript</span>
+            <span>Python</span>
+            <span>SQL</span>
+            <span>HTML/CSS</span>
+            <span>Discord.js</span>
+            <span>APIs</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects" class="page" aria-labelledby="projects-title">
+      <div class="section-heading">
+        <p class="eyebrow">C:\Users\Raven\Projects</p>
+        <h2 id="projects-title">Featured Projects</h2>
+        Bots, websites, and other things I've made or am currently tinkering with.</p>
+      </div>
+
+      <div id="projectGrid" class="project-grid"></div>
+    </section>
+
+    <section id="links" class="page" aria-labelledby="links-title">
+      <div class="section-heading">
+        <p class="eyebrow">C:\Users\Raven\Links</p>
+        <h2 id="links-title">Links & Other Stuff</h2>
+        <p>The rest of my internet clutter, sorted into folders so it looks intentional.</p>
+      </div>
+
+      <div id="linkGroups" class="link-groups"></div>
+    </section>
+
+    <section id="music" class="page" aria-labelledby="music-title">
+      <div class="section-heading">
+        <p class="eyebrow">C:\Users\Raven\Music</p>
+        <h2 id="music-title">Music</h2>
+        <p>A small corner for artists, listening links, and whatever I have on repeat.</p>
+      </div>
+
+      <div class="music-grid">
+        <div class="window">
+          <div class="window-titlebar">
+            <span>artists_i_like.txt</span>
+            <span class="window-icons" aria-hidden="true">□ ─ ×</span>
+          </div>
+          <div class="window-body artist-list">
+            <span>Кино</span>
+            <span>Chris Stapleton</span>
+            <span>The Heavy Heavy</span>
+            <span>The Smiths</span>
+            <span>Dawes</span>
+            <span>Porcupine Tree</span>
+            <span>The Clarks</span>
+            <span>The Vaccines</span>
+            <span>Jeff Buckley</span>
+          </div>
+        </div>
+
+        <div class="window">
+          <div class="window-titlebar">
+            <span>music_links.url</span>
+            <span class="window-icons" aria-hidden="true">□ ─ ×</span>
+          </div>
+          <div id="musicLinks" class="window-body stacked-links"></div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer window">
+      <span>Raven.exe</span>
+      <span id="year"></span>
+    </footer>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
