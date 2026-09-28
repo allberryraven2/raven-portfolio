@@ -106,9 +106,7 @@ const PROJECTS = [
       }
     ]
   },
-
-  {
-    title: "Commission Manager",
+ 
   {
     title: "Commission Manager",
     type: "Discord Bot",
