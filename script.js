@@ -10,6 +10,7 @@ const PROJECTS = [
     icon: "🤖",
     status: "ACTIVE",
     featured: false,
+    image: "tf2-map-picker-preview.png",
     description:
       "A Discord bot I made for picking random Team Fortress 2 maps and modes, including seasonal and less-common official modes.",
     tags: ["JavaScript", "Discord.js", "TF2"],
