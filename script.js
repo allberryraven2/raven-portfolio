@@ -2,7 +2,79 @@
 // RAVEN PORTFOLIO
 // Edit the data below to update the site later.
 // ======================================================
+/*
+========================================================
+NEW PROJECT TEMPLATE
+Copy this whole object and paste it inside PROJECTS.
+Then change the values.
+========================================================
 
+{
+  title: "PROJECT NAME",
+
+  type: "Discord Bot",
+
+  group: "Bots",
+
+  category: "Gaming",
+
+  icon: "🤖",
+
+  status: "IN DEVELOPMENT",
+
+  featured: false,
+
+  image: "project-image.png",
+
+  description:
+    "Describe what the project does here.",
+
+  tags: [
+    "JavaScript",
+    "Discord.js"
+  ],
+
+  note: "Currently in development.",
+
+  links: [
+    {
+      label: "open website",
+      url: "https://example.com/",
+      primary: true
+    }
+  ]
+},
+
+GROUP EXAMPLES:
+"Bots"
+"Websites"
+"Other Projects"
+
+CATEGORY EXAMPLES:
+"Gaming"
+"Organization"
+"Utility"
+"Gaming Tools"
+"Creative"
+"Browser Extensions"
+"Scripts & Automation"
+"Experiments"
+
+STATUS EXAMPLES:
+"ACTIVE"
+"LIVE"
+"IN DEVELOPMENT"
+"PAUSED"
+"ARCHIVED"
+
+If there is no public link yet, use:
+
+links: [
+  // Add a public link later.
+]
+
+========================================================
+*/
 const PROJECTS = [
   {
     title: "TF2 Map Picker",
