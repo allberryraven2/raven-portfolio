@@ -434,3 +434,56 @@ document
     "click",
     loadLastfmTracks
   );
+async function loadSteamStatus() {
+  const playingElement =
+    document.getElementById("steam-playing");
+
+  if (!playingElement) {
+    return;
+  }
+
+  try {
+    const response = await fetch(
+      "/api/steam-status",
+      {
+        cache: "no-store"
+      }
+    );
+
+    if (!response.ok) {
+      throw new Error(
+        `Steam returned ${response.status}`
+      );
+    }
+
+    const data = await response.json();
+
+    if (data.error) {
+      throw new Error(data.error);
+    }
+
+    playingElement.textContent =
+      data.display || "nothing";
+
+  } catch (error) {
+    console.error(
+      "Steam status failed:",
+      error
+    );
+
+    playingElement.textContent =
+      "unavailable";
+  }
+}
+
+document.addEventListener(
+  "DOMContentLoaded",
+  () => {
+    loadSteamStatus();
+
+    setInterval(
+      loadSteamStatus,
+      60000
+    );
+  }
+);
