@@ -1,4 +1,4 @@
- // ======================================================
+// ======================================================
 // RAVEN PORTFOLIO
 // Edit the data below to update the site later.
 // ======================================================
@@ -90,7 +90,7 @@ const PROJECTS = [
       "A Discord bot I made for picking random Team Fortress 2 maps and modes, including seasonal and less-common official modes.",
 
     tags: [
-      "JavaScript",
+      "TypeScript",
       "Discord.js",
       "TF2",
       "RNG"
@@ -106,7 +106,7 @@ const PROJECTS = [
       }
     ]
   },
- 
+
   {
     title: "Commission Manager",
     type: "Discord Bot",
@@ -170,23 +170,23 @@ const LINK_GROUPS = [
   },
 
   {
-  title: "🌐 socials / media",
-  description: "places where I save, rate, build, or hoard things",
-  links: [
-    {
-      label: "GitHub",
-      url: "https://github.com/ellipticbean"
-    },
-    {
-      label: "Pinterest",
-      url: "https://www.pinterest.com/ellipticbean/_profile/"
-    },
-    {
-      label: "Letterboxd",
-      url: "https://letterboxd.com/ellipticbean/"
-    }
-  ]
-},
+    title: "🌐 socials / media",
+    description: "places where I save, rate, build, or hoard things",
+    links: [
+      {
+        label: "GitHub",
+        url: "https://github.com/ellipticbean"
+      },
+      {
+        label: "Pinterest",
+        url: "https://www.pinterest.com/ellipticbean/_profile/"
+      },
+      {
+        label: "Letterboxd",
+        url: "https://letterboxd.com/ellipticbean/"
+      }
+    ]
+  },
 
   {
     title: "🧠 assorted me-data",
@@ -336,9 +336,8 @@ function createProjectCard(project) {
       </span>
     </div>
 
-    ${
-      project.image
-        ? `
+    ${project.image
+      ? `
           <div class="project-preview">
             <img
               src="${project.image}"
@@ -347,7 +346,7 @@ function createProjectCard(project) {
             >
           </div>
         `
-        : ""
+      : ""
     }
 
     <div class="project-body">
@@ -362,25 +361,24 @@ function createProjectCard(project) {
 
       <div class="project-tags">
         ${project.tags
-          .map(tag => `<span>${tag}</span>`)
-          .join("")}
+      .map(tag => `<span>${tag}</span>`)
+      .join("")}
       </div>
 
-      ${
-        actionLinks
-          ? `
+      ${actionLinks
+      ? `
             <div class="project-actions">
               ${actionLinks}
             </div>
           `
-          : `
+      : `
             <p>
               <small>
                 ${project.note || "No public link available."}
               </small>
             </p>
           `
-      }
+    }
 
     </div>
   `;
@@ -881,9 +879,8 @@ function renderLastfmTracks(tracks) {
           ${track.nowPlaying ? "▶" : number}
         </div>
 
-        ${
-          albumArt
-            ? `
+        ${albumArt
+        ? `
               <img
                 class="lastfm-art"
                 src="${albumArt}"
@@ -891,12 +888,12 @@ function renderLastfmTracks(tracks) {
                 loading="lazy"
               >
             `
-            : `
+        : `
               <div class="lastfm-art lastfm-art-empty">
                 ♪
               </div>
             `
-        }
+      }
 
         <div class="lastfm-track-info">
           <div class="lastfm-track-top">
@@ -911,11 +908,10 @@ function renderLastfmTracks(tracks) {
             ${artist}
           </span>
 
-          ${
-            album
-              ? `<span class="lastfm-album">${album}</span>`
-              : ""
-          }
+          ${album
+        ? `<span class="lastfm-album">${album}</span>`
+        : ""
+      }
         </div>
       </a>
     `;
@@ -936,11 +932,11 @@ async function loadLastfmTracks() {
 
   try {
     const response = await fetch(
-  "/api/lastfm",
-  {
-    cache: "no-store"
-  }
-);
+      "/api/lastfm",
+      {
+        cache: "no-store"
+      }
+    );
 
     if (!response.ok) {
       throw new Error(
