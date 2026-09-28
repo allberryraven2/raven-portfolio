@@ -4,7 +4,9 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="theme-color" content="#10140f" />
+
   <title>Raven | Projects & Links</title>
+
   <link rel="stylesheet" href="style.css" />
 </head>
 
@@ -12,7 +14,13 @@
   <div class="desktop-noise" aria-hidden="true"></div>
 
   <main class="shell">
+
+    <!-- =========================================
+         TOP NAVIGATION
+         ========================================= -->
+
     <header class="topbar window">
+
       <a class="brand" href="#home" aria-label="Raven home">
         <span class="brand-dot"></span>
         <span>Raven.exe</span>
@@ -20,70 +28,142 @@
 
       <nav class="nav" aria-label="Main navigation">
         <a href="#home" data-route="home">home</a>
+        <a href="#about" data-route="about">about</a>
         <a href="#projects" data-route="projects">projects</a>
         <a href="#links" data-route="links">links</a>
         <a href="#music" data-route="music">music</a>
       </nav>
 
-<div class="desktop-status" aria-hidden="true">
-  <span>● online</span>
-</div>
+      <div class="desktop-status" aria-hidden="true">
+        <span>● online</span>
+      </div>
 
-</header>
+    </header>
 
-    <section id="home" class="page active" aria-labelledby="home-title">
+
+    <!-- =========================================
+         HOME
+         ========================================= -->
+
+    <section
+      id="home"
+      class="page active"
+      aria-labelledby="home-title"
+    >
+
       <div class="window hero-window">
+
         <div class="window-titlebar">
           <span>Raven / profile</span>
           <span class="window-icons" aria-hidden="true">□ ─ ×</span>
         </div>
 
         <div class="hero-grid">
+
           <div class="profile-photo-wrap">
-  <img
-    class="profile-photo"
-    src="image01.jpg"
-    alt="Raven's profile picture"
-  >
-  <span class="photo-caption">avatar.png</span>
-</div>
+            <img
+              class="profile-photo"
+              src="image01.jpg"
+              alt="Raven's profile picture"
+            >
+
+            <span class="photo-caption">
+              avatar.png
+            </span>
+          </div>
 
           <div class="hero-copy">
-            <p class="eyebrow">hello, i'm</p>
-            <h1 id="home-title">Raven</h1>
-            <p class="subtitle">coder • crocheter • uhhhh</p>
+
+            <p class="eyebrow">
+              hello, i'm
+            </p>
+
+            <h1 id="home-title">
+              Raven
+            </h1>
+
+            <p class="subtitle">
+              coder • crocheter • uhhhh
+            </p>
+
             <p>
-  I build bots, web tools, and small projects for oddly specific problems... now that my degree is obsolete :)
+              I build bots, web tools, and small projects for oddly specific
+              problems... now that my degree is obsolete :)
             </p>
 
             <div class="button-row">
-              <a class="btn primary" href="#projects">open projects</a>
-              <a class="btn" href="#links">browse links</a>
+
+              <a
+                class="btn primary"
+                href="#projects"
+              >
+                open projects
+              </a>
+
+              <a
+                class="btn"
+                href="#links"
+              >
+                browse links
+              </a>
+
             </div>
+
           </div>
+
         </div>
+
       </div>
 
+
       <div class="home-grid">
+
+        <!-- CURRENTLY -->
+
         <div class="window">
+
           <div class="window-titlebar">
             <span>currently.txt</span>
             <span class="window-icons" aria-hidden="true">□ ─ ×</span>
           </div>
-         <div class="window-body status-list">
-  <p>🛠️ working on: Commission Manager</p>
-  <p>🌐 maintaining: Game Night Roulette</p>
-  <p>🧶 making: Christmas mosaic crochet blanket</p>
-  <p>🎮 playing: <span id="steam-playing">checking...</span></p>
-</div>
+
+          <div class="window-body status-list">
+
+            <p>
+              🛠️ working on: Commission Manager
+            </p>
+
+            <p>
+              🌐 maintaining: Game Night Roulette
+            </p>
+
+            <p>
+              🧶 making: Christmas mosaic crochet blanket
+            </p>
+
+            <p>
+              🎮 playing:
+              <span id="steam-playing">
+                checking...
+              </span>
+            </p>
+
+          </div>
+
         </div>
 
+
+        <!-- SKILLS -->
+
         <div class="window">
+
           <div class="window-titlebar">
             <span>skills.ini</span>
             <span class="window-icons" aria-hidden="true">□ ─ ×</span>
           </div>
+
           <div class="window-body tag-cloud">
+
             <span>JavaScript</span>
             <span>TypeScript</span>
             <span>Python</span>
@@ -91,95 +171,240 @@
             <span>HTML/CSS</span>
             <span>Discord.js</span>
             <span>APIs</span>
+
           </div>
+
         </div>
+
       </div>
+
     </section>
 
-    <section id="projects" class="page" aria-labelledby="projects-title">
-  <div class="section-heading">
-    <p class="eyebrow">C:\Users\Raven\Projects</p>
-    <h2 id="projects-title">Featured Projects</h2>
-    <p>Bots, websites, and other things I've made or am currently tinkering with.</p>
 
-    <div class="button-row">
-      <a
-        class="btn"
-        href="https://github.com/ellipticbean"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        view my GitHub ↗
-      </a>
-    </div>
-  </div>
+    <!-- =========================================
+         ABOUT
+         ========================================= -->
 
-  <div id="projectGrid" class="project-grid"></div>
-</section>
-    <section id="links" class="page" aria-labelledby="links-title">
+    <section
+      id="about"
+      class="page"
+      aria-labelledby="about-title"
+    >
+
       <div class="section-heading">
-        <p class="eyebrow">C:\Users\Raven\Links</p>
-        <h2 id="links-title">Links & Other Stuff</h2>
-        <p>The rest of my internet clutter, sorted into folders so it looks intentional.</p>
+
+        <p class="eyebrow">
+          C:\Users\Raven\About
+        </p>
+
+        <h2 id="about-title">
+          About Me
+        </h2>
+
+        <p>
+          A little more about the person behind the projects.
+        </p>
+
       </div>
 
-      <div id="linkGroups" class="link-groups"></div>
+
+      <div class="window">
+
+        <div class="window-titlebar">
+          <span>about_me.txt</span>
+          <span class="window-icons" aria-hidden="true">□ ─ ×</span>
+        </div>
+
+        <div class="window-body">
+
+          <p>
+            Put your about-me paragraph here.
+          </p>
+
+        </div>
+
+      </div>
+
     </section>
 
-    <section id="music" class="page" aria-labelledby="music-title">
+
+    <!-- =========================================
+         PROJECTS
+         ========================================= -->
+
+    <section
+      id="projects"
+      class="page"
+      aria-labelledby="projects-title"
+    >
+
       <div class="section-heading">
-        <p class="eyebrow">C:\Users\Raven\Music</p>
-        <h2 id="music-title">Music</h2>
-        <p>A small corner for artists, listening links, and whatever I have on repeat.</p>
-      </div>
-<div class="window lastfm-window">
-  <div class="window-titlebar">
-    <span>lastfm.exe</span>
-    <span class="lastfm-live-label">● LIVE</span>
-  </div>
 
-  <div class="window-body">
+        <p class="eyebrow">
+          C:\Users\Raven\Projects
+        </p>
 
-    <div class="lastfm-header">
-      <div>
-        <strong>recent listening</strong>
-        <p>latest 3 tracks from Last.fm</p>
+        <h2 id="projects-title">
+          Featured Projects
+        </h2>
+
+        <p>
+          Bots, websites, and other things I decided needed to exist.
+        </p>
+
       </div>
 
-      <a
-        class="lastfm-profile-link"
-        href="https://www.last.fm/user/MintyCorpse"
-        target="_blank"
-      >
-        MintyCorpse ↗
-      </a>
-    </div>
+      <div
+        id="projectGrid"
+        class="project-grid"
+      ></div>
 
-    <div id="lastfmFeed" class="lastfm-feed">
-      <p class="lastfm-loading">
-        checking Last.fm...
-      </p>
-    </div>
+    </section>
 
-    <div class="lastfm-footer">
-      <span id="lastfmUpdated">
-        waiting for signal...
-      </span>
 
-      <button id="refreshLastfm" type="button">
-        ↻ refresh
-      </button>
-    </div>
+    <!-- =========================================
+         LINKS
+         ========================================= -->
 
-  </div>
-</div>
+    <section
+      id="links"
+      class="page"
+      aria-labelledby="links-title"
+    >
+
+      <div class="section-heading">
+
+        <p class="eyebrow">
+          C:\Users\Raven\Links
+        </p>
+
+        <h2 id="links-title">
+          Links & Other Stuff
+        </h2>
+
+        <p>
+          The rest of my internet clutter, sorted into folders so it looks intentional.
+        </p>
+
+      </div>
+
+      <div
+        id="linkGroups"
+        class="link-groups"
+      ></div>
+
+    </section>
+
+
+    <!-- =========================================
+         MUSIC
+         ========================================= -->
+
+    <section
+      id="music"
+      class="page"
+      aria-labelledby="music-title"
+    >
+
+      <div class="section-heading">
+
+        <p class="eyebrow">
+          C:\Users\Raven\Music
+        </p>
+
+        <h2 id="music-title">
+          Music
+        </h2>
+
+        <p>
+          A small corner for artists, listening links, and whatever I have on repeat.
+        </p>
+
+      </div>
+
+
+      <!-- LAST.FM -->
+
+      <div class="window lastfm-window">
+
+        <div class="window-titlebar">
+          <span>lastfm.exe</span>
+          <span class="lastfm-live-label">● LIVE</span>
+        </div>
+
+        <div class="window-body">
+
+          <div class="lastfm-header">
+
+            <div>
+
+              <strong>
+                recent listening
+              </strong>
+
+              <p>
+                latest 3 tracks from Last.fm
+              </p>
+
+            </div>
+
+            <a
+              class="lastfm-profile-link"
+              href="https://www.last.fm/user/MintyCorpse"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              MintyCorpse ↗
+            </a>
+
+          </div>
+
+
+          <div
+            id="lastfmFeed"
+            class="lastfm-feed"
+          >
+
+            <p class="lastfm-loading">
+              checking Last.fm...
+            </p>
+
+          </div>
+
+
+          <div class="lastfm-footer">
+
+            <span id="lastfmUpdated">
+              waiting for signal...
+            </span>
+
+            <button
+              id="refreshLastfm"
+              type="button"
+            >
+              ↻ refresh
+            </button>
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <!-- MUSIC DETAILS -->
+
       <div class="music-grid">
+
         <div class="window">
+
           <div class="window-titlebar">
             <span>artists_i_like.txt</span>
             <span class="window-icons" aria-hidden="true">□ ─ ×</span>
           </div>
+
           <div class="window-body artist-list">
+
             <span>Кино</span>
             <span>Chris Stapleton</span>
             <span>The Heavy Heavy</span>
@@ -189,25 +414,49 @@
             <span>The Clarks</span>
             <span>The Vaccines</span>
             <span>Jeff Buckley</span>
+
           </div>
+
         </div>
 
+
         <div class="window">
+
           <div class="window-titlebar">
             <span>music_links.url</span>
             <span class="window-icons" aria-hidden="true">□ ─ ×</span>
           </div>
-          <div id="musicLinks" class="window-body stacked-links"></div>
+
+          <div
+            id="musicLinks"
+            class="window-body stacked-links"
+          ></div>
+
         </div>
+
       </div>
+
     </section>
 
+
+    <!-- =========================================
+         FOOTER
+         ========================================= -->
+
     <footer class="footer window">
-      <span>Raven.exe</span>
+
+      <span>
+        Raven.exe
+      </span>
+
       <span id="year"></span>
+
     </footer>
+
   </main>
 
+
   <script src="script.js"></script>
+
 </body>
 </html>
