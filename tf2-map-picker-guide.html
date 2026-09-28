@@ -30,10 +30,11 @@
       scroll-behavior: smooth;
     }
 
-    .guide-shell {
-      display: grid;
-      gap: 18px;
-    }
+    /* The guide uses its own sticky jump bar,
+   so the normal portfolio header stays put. */
+.guide-shell > .topbar {
+  position: static;
+}
 
 
     /* =====================================================
