@@ -40,6 +40,7 @@ const PROJECTS = [
     icon: "🎲",
     status: "LIVE",
     featured: true,
+    image: "game-night-roulette.png",
     description:
       "A game picker I built for deciding what to play. It supports custom game libraries, Steam login and import, group-size filters, playtime, and live Steam player counts.",
     tags: [
@@ -188,27 +189,38 @@ function renderProjects() {
       .join("");
 
     card.innerHTML = `
-      <div class="project-card-head">
-        <h3>${project.icon} ${project.title}</h3>
-        <span class="status-pill">${project.status}</span>
-      </div>
+  <div class="project-card-head">
+    <h3>${project.icon} ${project.title}</h3>
+    <span class="status-pill">${project.status}</span>
+  </div>
 
-      <div class="project-body">
-        <p class="project-type">${project.type}</p>
-        <p class="project-description">${project.description}</p>
+  ${
+    project.image
+      ? `<div class="project-preview">
+           <img
+             src="${project.image}"
+             alt="${project.title} screenshot"
+             loading="lazy"
+           >
+         </div>`
+      : ""
+  }
 
-        <div class="project-tags">
-          ${project.tags.map(tag => `<span>${tag}</span>`).join("")}
-        </div>
+  <div class="project-body">
+    <p class="project-type">${project.type}</p>
+    <p class="project-description">${project.description}</p>
 
-        ${
-          actionLinks
-  ? `<div class="project-actions">${actionLinks}</div>`
-  : `<p><small>${project.note || "No public link available."}</small></p>`
-        }
-      </div>
-    `;
+    <div class="project-tags">
+      ${project.tags.map(tag => `<span>${tag}</span>`).join("")}
+    </div>
 
+    ${
+      actionLinks
+        ? `<div class="project-actions">${actionLinks}</div>`
+        : `<p><small>${project.note || "No public link available."}</small></p>`
+    }
+  </div>
+`;
     grid.appendChild(card);
   });
 }
