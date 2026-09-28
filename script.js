@@ -937,7 +937,7 @@ async function loadLastfmTracks() {
 
   try {
     const response = await fetch(
-      "/api/lastfm",
+      "https://raven.ellipticbean.workers.dev/api/lastfm",
       {
         cache: "no-store"
       }
@@ -1020,7 +1020,7 @@ async function loadSteamStatus() {
 
   try {
     const response = await fetch(
-      "/api/steam-status",
+      "https://raven.ellipticbean.workers.dev/api/steam-status",
       {
         cache: "no-store"
       }
