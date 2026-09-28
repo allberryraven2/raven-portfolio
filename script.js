@@ -977,6 +977,7 @@ async function loadLastfmTracks() {
 document.getElementById("year").textContent = new Date().getFullYear();
 
 renderProjects();
+renderRecentProjects();
 renderLinkGroups();
 renderMusicLinks();
 showPage(routeFromHash());
