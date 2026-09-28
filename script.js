@@ -146,7 +146,7 @@ const pages = [...document.querySelectorAll(".page")];
 const navLinks = [...document.querySelectorAll("[data-route]")];
 
 function showPage(route) {
-  const safeRoute = ["home", "projects", "links", "music"].includes(route)
+  const safeRoute = ["home", "about", "projects", "links", "music"].includes(route)
     ? route
     : "home";
 
