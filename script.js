@@ -71,19 +71,23 @@ const LINK_GROUPS = [
   },
 
   {
-    title: "🌐 socials / media",
-    description: "places where I save, rate, or hoard things",
-    links: [
-      {
-        label: "Pinterest",
-        url: "https://www.pinterest.com/ellipticbean/_profile/"
-      },
-      {
-        label: "Letterboxd",
-        url: "https://letterboxd.com/ellipticbean/"
-      }
-    ]
-  },
+  title: "🌐 socials / media",
+  description: "places where I save, rate, build, or hoard things",
+  links: [
+    {
+      label: "GitHub",
+      url: "https://github.com/ellipticbean"
+    },
+    {
+      label: "Pinterest",
+      url: "https://www.pinterest.com/ellipticbean/_profile/"
+    },
+    {
+      label: "Letterboxd",
+      url: "https://letterboxd.com/ellipticbean/"
+    }
+  ]
+},
 
   {
     title: "🧠 assorted me-data",
