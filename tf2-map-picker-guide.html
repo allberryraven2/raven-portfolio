@@ -1,0 +1,1087 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  />
+
+  <meta
+    name="theme-color"
+    content="#10140f"
+  />
+
+  <title>
+    TF2 Map Picker Guide | Raven
+  </title>
+
+  <link
+    rel="stylesheet"
+    href="style.css"
+  />
+
+  <style>
+    .guide-shell {
+      display: grid;
+      gap: 18px;
+    }
+
+    .guide-hero {
+      margin-bottom: 4px;
+    }
+
+    .guide-hero-body {
+      padding: 24px;
+    }
+
+    .guide-hero h1 {
+      margin:
+        5px 0 10px;
+
+      font-size:
+        clamp(34px, 7vw, 62px);
+    }
+
+    .guide-subtitle {
+      max-width: 760px;
+
+      font-size: 18px;
+      line-height: 1.6;
+    }
+
+    .guide-status {
+      display: inline-block;
+
+      margin-top: 10px;
+
+      padding: 5px 10px;
+
+      border: 2px solid var(--line);
+      border-radius: 999px;
+
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .guide-preview {
+      width: 100%;
+
+      margin-top: 18px;
+
+      overflow: hidden;
+
+      border: 2px solid var(--line);
+      border-radius: 8px;
+    }
+
+    .guide-preview img {
+      display: block;
+
+      width: 100%;
+      height: auto;
+    }
+
+    .guide-grid {
+      display: grid;
+
+      grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
+      gap: 18px;
+    }
+
+    .guide-section .window-body {
+      padding: 22px;
+    }
+
+    .guide-section h2,
+    .guide-section h3 {
+      margin-top: 0;
+    }
+
+    .guide-section p,
+    .guide-section li {
+      line-height: 1.6;
+    }
+
+    .guide-section ul,
+    .guide-section ol {
+      padding-left: 22px;
+    }
+
+    .guide-section li + li {
+      margin-top: 8px;
+    }
+
+    .guide-command {
+      margin: 14px 0;
+
+      padding: 14px;
+
+      border: 2px solid var(--line);
+      border-radius: 8px;
+
+      background: rgba(
+        255,
+        255,
+        255,
+        0.25
+      );
+    }
+
+    .guide-command code {
+      font-size: 15px;
+      font-weight: 800;
+    }
+
+    .guide-command p {
+      margin-bottom: 0;
+    }
+
+    .guide-option {
+      margin: 12px 0;
+
+      padding-left: 14px;
+
+      border-left: 4px solid #ff8a24;
+    }
+
+    .guide-option strong {
+      display: block;
+
+      margin-bottom: 4px;
+    }
+
+    .guide-tags {
+      display: flex;
+      flex-wrap: wrap;
+
+      gap: 8px;
+
+      margin-top: 14px;
+    }
+
+    .guide-tags span {
+      padding: 5px 9px;
+
+      border: 2px solid var(--line);
+      border-radius: 6px;
+
+      background: #f3efd8;
+
+      font-family: monospace;
+      font-size: 12px;
+    }
+
+    .guide-nav {
+      display: flex;
+      flex-wrap: wrap;
+
+      gap: 8px;
+
+      margin-top: 18px;
+    }
+
+    .guide-nav a {
+      padding: 7px 10px;
+
+      border: 2px solid var(--line);
+      border-radius: 7px;
+
+      background: #f3efd8;
+      color: var(--ink);
+
+      font-weight: 800;
+      text-decoration: none;
+    }
+
+    .guide-coming-soon {
+      padding: 14px;
+
+      border: 2px dashed var(--line);
+      border-radius: 8px;
+
+      background: rgba(
+        255,
+        138,
+        36,
+        0.12
+      );
+    }
+
+    .guide-button-list {
+      display: grid;
+
+      gap: 10px;
+    }
+
+    .guide-button {
+      padding: 12px;
+
+      border: 2px solid var(--line);
+      border-radius: 8px;
+
+      background: rgba(
+        255,
+        255,
+        255,
+        0.25
+      );
+    }
+
+    .guide-button strong {
+      display: block;
+
+      margin-bottom: 4px;
+    }
+
+    .guide-example {
+      padding: 14px;
+
+      overflow-x: auto;
+
+      border: 2px solid var(--line);
+      border-radius: 8px;
+
+      background: #151814;
+      color: #f4f0da;
+
+      font-family: monospace;
+      line-height: 1.7;
+    }
+
+    .guide-back {
+      margin-bottom: 18px;
+    }
+
+    @media (max-width: 700px) {
+      .guide-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .guide-hero-body {
+        padding: 18px;
+      }
+
+      .guide-section .window-body {
+        padding: 17px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div
+    class="desktop-noise"
+    aria-hidden="true"
+  ></div>
+
+  <main class="shell guide-shell">
+
+    <header class="topbar window">
+
+      <a
+        class="brand"
+        href="index.html#home"
+        aria-label="Raven home"
+      >
+        <span class="brand-dot"></span>
+        <span>Raven.exe</span>
+      </a>
+
+      <nav
+        class="nav"
+        aria-label="Guide navigation"
+      >
+
+        <a href="index.html#home">
+          home
+        </a>
+
+        <a href="index.html#projects">
+          projects
+        </a>
+
+        <a href="#quick-start">
+          quick start
+        </a>
+
+        <a href="#commands">
+          commands
+        </a>
+
+      </nav>
+
+      <div
+        class="desktop-status"
+        aria-hidden="true"
+      >
+        <span>● documentation</span>
+      </div>
+
+    </header>
+
+
+    <div class="guide-back">
+
+      <a
+        class="btn"
+        href="index.html#projects"
+      >
+        ← back to Project Explorer
+      </a>
+
+    </div>
+
+
+    <section
+      class="window guide-hero"
+      id="top"
+    >
+
+      <div class="window-titlebar">
+
+        <span>
+          tf2_map_picker_help.exe
+        </span>
+
+        <span
+          class="window-icons"
+          aria-hidden="true"
+        >
+          □ ─ ×
+        </span>
+
+      </div>
+
+      <div class="guide-hero-body">
+
+        <p class="eyebrow">
+          C:\Users\Raven\Bots\Gaming\TF2MapPicker
+        </p>
+
+        <h1>
+          🗺️ TF2 Random Map Picker
+        </h1>
+
+        <p class="guide-subtitle">
+          A Discord bot for randomly choosing
+          Team Fortress 2 maps with optional game
+          mode, season, and beta-map filters.
+        </p>
+
+        <span class="guide-status">
+          ● ACTIVE
+        </span>
+
+        <div class="guide-tags">
+          <span>Discord Bot</span>
+          <span>TF2</span>
+          <span>RNG</span>
+          <span>Discord.js</span>
+          <span>TypeScript</span>
+        </div>
+
+        <div class="guide-nav">
+
+          <a href="#quick-start">
+            Quick Start
+          </a>
+
+          <a href="#map-command">
+            /map
+          </a>
+
+          <a href="#filters">
+            Filters
+          </a>
+
+          <a href="#buttons">
+            Result Buttons
+          </a>
+
+          <a href="#commands">
+            Other Commands
+          </a>
+
+          <a href="#no-slash">
+            No-Slash Mode
+          </a>
+
+        </div>
+
+        <div class="guide-preview">
+
+          <img
+            src="tf2-map-picker-preview-v2.png"
+            alt="TF2 Map Picker Discord result"
+          >
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <section
+      id="quick-start"
+      class="window guide-section"
+    >
+
+      <div class="window-titlebar">
+
+        <span>quick_start.txt</span>
+
+        <span
+          class="window-icons"
+          aria-hidden="true"
+        >
+          □ ─ ×
+        </span>
+
+      </div>
+
+      <div class="window-body">
+
+        <h2>
+          Quick Start
+        </h2>
+
+        <p>
+          The fastest way to use TF2 Random Map
+          Picker is with the <strong>/map</strong>
+          command.
+        </p>
+
+        <ol>
+
+          <li>
+            Type <code>/map</code> in a Discord
+            channel where the bot is available.
+          </li>
+
+          <li>
+            Optionally choose a game mode,
+            season, and beta-map setting.
+          </li>
+
+          <li>
+            Send the command.
+          </li>
+
+          <li>
+            The bot randomly selects a map from
+            every map matching your filters.
+          </li>
+
+          <li>
+            Use the buttons underneath the result
+            if you want another map.
+          </li>
+
+        </ol>
+
+        <div class="guide-example">
+          /map<br>
+          /map mode:Payload<br>
+          /map mode:Payload season:Halloween<br>
+          /map mode:Payload season:Halloween beta:Exclude Beta Maps
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <section class="guide-grid">
+
+      <div
+        id="map-command"
+        class="window guide-section"
+      >
+
+        <div class="window-titlebar">
+
+          <span>map_command.txt</span>
+
+          <span
+            class="window-icons"
+            aria-hidden="true"
+          >
+            □ ─ ×
+          </span>
+
+        </div>
+
+        <div class="window-body">
+
+          <h2>
+            🎲 /map
+          </h2>
+
+          <p>
+            The bot's main command. It randomly
+            picks one map from the pool produced
+            by your selected filters.
+          </p>
+
+          <div class="guide-command">
+
+            <code>/map</code>
+
+            <p>
+              With no options selected, the bot
+              can choose from any non-beta map
+              regardless of mode or season.
+            </p>
+
+          </div>
+
+          <p>
+            The result shows:
+          </p>
+
+          <ul>
+            <li>Map name</li>
+            <li>Game mode</li>
+            <li>TF2 map code</li>
+            <li>Your active filters</li>
+            <li>How many maps were in the pool</li>
+            <li>Season, when applicable</li>
+            <li>Beta status, when applicable</li>
+          </ul>
+
+        </div>
+
+      </div>
+
+
+      <div
+        id="filters"
+        class="window guide-section"
+      >
+
+        <div class="window-titlebar">
+
+          <span>filters.ini</span>
+
+          <span
+            class="window-icons"
+            aria-hidden="true"
+          >
+            □ ─ ×
+          </span>
+
+        </div>
+
+        <div class="window-body">
+
+          <h2>
+            🔎 Map Filters
+          </h2>
+
+          <div class="guide-option">
+
+            <strong>
+              🎮 Mode
+            </strong>
+
+            Choose a specific game mode or leave
+            it blank to allow any mode.
+
+          </div>
+
+          <div class="guide-option">
+
+            <strong>
+              🎃 Season
+            </strong>
+
+            Choose Normal, Halloween, or
+            Smissmas.
+
+            Leaving it blank allows maps from
+            any season.
+
+          </div>
+
+          <div class="guide-option">
+
+            <strong>
+              🧪 Beta
+            </strong>
+
+            Beta maps are excluded by default.
+
+            You can instead include beta maps or
+            choose only beta maps.
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <section
+      id="modes"
+      class="window guide-section"
+    >
+
+      <div class="window-titlebar">
+
+        <span>supported_modes.txt</span>
+
+        <span
+          class="window-icons"
+          aria-hidden="true"
+        >
+          □ ─ ×
+        </span>
+
+      </div>
+
+      <div class="window-body">
+
+        <h2>
+          🎮 Supported Game Modes
+        </h2>
+
+        <p>
+          The mode filter includes standard and
+          less-common official TF2 modes.
+        </p>
+
+        <div class="guide-tags">
+
+          <span>Capture the Flag</span>
+          <span>Control Points</span>
+          <span>Attack/Defend</span>
+          <span>Payload</span>
+          <span>Payload Race</span>
+          <span>King of the Hill</span>
+          <span>Medieval Mode</span>
+          <span>Mann vs. Machine</span>
+          <span>Player Destruction</span>
+          <span>Robot Destruction</span>
+          <span>PASS Time</span>
+          <span>Special Delivery</span>
+          <span>Territorial Control</span>
+          <span>Mannpower</span>
+          <span>Arena</span>
+          <span>Versus Saxton Hale</span>
+          <span>Zombie Infection</span>
+          <span>Tug of War</span>
+          <span>Hold the Flag</span>
+          <span>Attack/Defend + Payload</span>
+          <span>Domination</span>
+
+        </div>
+
+        <p>
+          You can also use
+          <strong>/modes</strong> inside Discord
+          to see the modes currently contained
+          in the bot's database and the number
+          of maps available for each one.
+        </p>
+
+      </div>
+
+    </section>
+
+
+    <section
+      id="buttons"
+      class="window guide-section"
+    >
+
+      <div class="window-titlebar">
+
+        <span>result_buttons.txt</span>
+
+        <span
+          class="window-icons"
+          aria-hidden="true"
+        >
+          □ ─ ×
+        </span>
+
+      </div>
+
+      <div class="window-body">
+
+        <h2>
+          Buttons Under a Map Result
+        </h2>
+
+        <div class="guide-button-list">
+
+          <div class="guide-button">
+
+            <strong>
+              🔄 Reroll
+            </strong>
+
+            Picks another map using the same
+            filters from the current roll.
+
+            When possible, it avoids immediately
+            giving you the exact same map again.
+
+          </div>
+
+
+          <div class="guide-button">
+
+            <strong>
+              🎮 Another From This Mode
+            </strong>
+
+            Picks another map from the current
+            map's game mode.
+
+            Applicable season and beta filters
+            are preserved.
+
+          </div>
+
+
+          <div class="guide-button">
+
+            <strong>
+              🎲 Any Map
+            </strong>
+
+            Clears the mode and season filters
+            and rolls from the bot's general
+            non-beta map pool.
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <section
+      id="commands"
+      class="window guide-section"
+    >
+
+      <div class="window-titlebar">
+
+        <span>commands.exe</span>
+
+        <span
+          class="window-icons"
+          aria-hidden="true"
+        >
+          □ ─ ×
+        </span>
+
+      </div>
+
+      <div class="window-body">
+
+        <h2>
+          Other Commands
+        </h2>
+
+
+        <div class="guide-command">
+
+          <code>/mapinfo</code>
+
+          <p>
+            Look up a specific TF2 map.
+
+            Start typing the map's name or map
+            code and Discord will show matching
+            maps.
+
+            The result shows its game mode,
+            map code, season, and beta status.
+          </p>
+
+        </div>
+
+
+        <div class="guide-command">
+
+          <code>/modes</code>
+
+          <p>
+            Displays the game modes currently
+            available in the bot's map database,
+            along with their map counts.
+          </p>
+
+        </div>
+
+
+        <div class="guide-command">
+
+          <code>/stats</code>
+
+          <p>
+            Shows statistics for the map
+            database, including standard maps,
+            beta maps, game modes, Normal maps,
+            Halloween maps, and Smissmas maps.
+          </p>
+
+        </div>
+
+
+        <div class="guide-command">
+
+          <code>/help</code>
+
+          <p>
+            Displays an in-Discord explanation
+            of the main map picker features and
+            controls.
+          </p>
+
+        </div>
+
+
+        <div class="guide-command">
+
+          <code>/support</code>
+
+          <p>
+            Shows information about optionally
+            supporting development of the bot
+            and provides a Buy Me a Coffee
+            button.
+          </p>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <section
+      id="no-slash"
+      class="window guide-section"
+    >
+
+      <div class="window-titlebar">
+
+        <span>interactive_picker.beta</span>
+
+        <span
+          class="window-icons"
+          aria-hidden="true"
+        >
+          □ ─ ×
+        </span>
+
+      </div>
+
+      <div class="window-body">
+
+        <h2>
+          🖱️ Using the Bot Without Slash Commands
+        </h2>
+
+        <div class="guide-coming-soon">
+
+          <strong>
+            🚧 Interactive picker currently being added
+          </strong>
+
+          <p>
+            A no-slash interface is currently
+            being developed.
+          </p>
+
+          <p>
+            The planned system lets you mention
+            the bot to open an interactive map
+            picker, then choose your options
+            using Discord buttons and menus
+            instead of typing a command.
+          </p>
+
+          <p>
+            The existing slash commands will
+            remain available as another way to
+            use the bot.
+          </p>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <section
+      id="troubleshooting"
+      class="window guide-section"
+    >
+
+      <div class="window-titlebar">
+
+        <span>troubleshooting.txt</span>
+
+        <span
+          class="window-icons"
+          aria-hidden="true"
+        >
+          □ ─ ×
+        </span>
+
+      </div>
+
+      <div class="window-body">
+
+        <h2>
+          Troubleshooting
+        </h2>
+
+        <h3>
+          No maps match my filters
+        </h3>
+
+        <p>
+          Some combinations of mode, season,
+          and beta settings may have no matching
+          maps.
+
+          Try removing one of your filters or
+          using a broader setting.
+        </p>
+
+
+        <h3>
+          Why are beta maps not appearing?
+        </h3>
+
+        <p>
+          Beta maps are excluded by default.
+
+          Choose <strong>Include Beta Maps</strong>
+          or <strong>Beta Maps Only</strong> when
+          using the beta option.
+        </p>
+
+
+        <h3>
+          What is the map code?
+        </h3>
+
+        <p>
+          The map code is TF2's internal map
+          identifier, such as
+          <code>pl_upward</code>.
+
+          It is displayed separately from the
+          readable map name.
+        </p>
+
+
+        <h3>
+          What does Map Pool mean?
+        </h3>
+
+        <p>
+          Map Pool is the number of maps that
+          matched your selected filters before
+          the bot randomly chose one.
+        </p>
+
+      </div>
+
+    </section>
+
+
+    <section class="window guide-section">
+
+      <div class="window-titlebar">
+
+        <span>about_this_bot.txt</span>
+
+        <span
+          class="window-icons"
+          aria-hidden="true"
+        >
+          □ ─ ×
+        </span>
+
+      </div>
+
+      <div class="window-body">
+
+        <h2>
+          About TF2 Random Map Picker
+        </h2>
+
+        <p>
+          TF2 Random Map Picker was built by
+          Raven as a small Discord utility for
+          people who know they want to play
+          Team Fortress 2 but don't particularly
+          want to decide where.
+        </p>
+
+        <p>
+          The bot is designed to support both
+          quick completely-random rolls and
+          increasingly specific map pools.
+        </p>
+
+        <div class="button-row">
+
+          <a
+            class="btn primary"
+            href="index.html#projects"
+          >
+            view project
+          </a>
+
+          <a
+            class="btn"
+            href="https://buymeacoffee.com/ellipticbean"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            ☕ support development
+          </a>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <footer class="footer window">
+
+      <span>
+        Raven.exe / TF2 Map Picker
+      </span>
+
+      <span>
+        2026
+      </span>
+
+    </footer>
+
+  </main>
+
+</body>
+</html>
