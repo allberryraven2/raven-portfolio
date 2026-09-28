@@ -588,7 +588,20 @@ function renderProjects() {
   if (!grid) return;
 
   grid.innerHTML = "";
+  const searchInput =
+    document.getElementById("projectSearch");
 
+  const searchQuery =
+    searchInput?.value || "";
+
+  if (searchQuery.trim()) {
+    renderProjectSearch(
+      grid,
+      searchQuery
+    );
+
+    return;
+  }
   // Main project folders
   if (!currentProjectGroup) {
     renderProjectGroups(grid);
