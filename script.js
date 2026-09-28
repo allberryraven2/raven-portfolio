@@ -7,13 +7,20 @@ const PROJECTS = [
   {
     title: "TF2 Map Picker",
     type: "Discord Bot",
+    group: "Bots",
+    category: "Gaming",
     icon: "🤖",
     status: "ACTIVE",
     featured: false,
     image: "tf2-map-picker-preview-v2.png",
     description:
       "A Discord bot I made for picking random Team Fortress 2 maps and modes, including seasonal and less-common official modes.",
-    tags: ["JavaScript", "Discord.js", "TF2"],
+    tags: [
+      "JavaScript",
+      "Discord.js",
+      "TF2",
+      "RNG"
+    ],
     note: "Source code currently private.",
     links: [
       // Add an invite/project link here later if you want.
@@ -23,13 +30,19 @@ const PROJECTS = [
   {
     title: "Commission Manager",
     type: "Discord Bot",
+    group: "Bots",
+    category: "Organization",
     icon: "🧾",
     status: "IN DEVELOPMENT",
     featured: false,
     image: "commission-manager-preview.png",
     description:
       "A Discord bot for keeping creator commissions organized, including commission status, deadlines, and creator/client workflow.",
-    tags: ["TypeScript", "Discord.js", "PostgreSQL"],
+    tags: [
+      "TypeScript",
+      "Discord.js",
+      "PostgreSQL"
+    ],
     note: "Currently in development.",
     links: [
       // Add a public link here later.
@@ -39,6 +52,8 @@ const PROJECTS = [
   {
     title: "Game Night Roulette",
     type: "Web App",
+    group: "Websites",
+    category: "Gaming Tools",
     icon: "🎲",
     status: "LIVE",
     featured: true,
@@ -50,7 +65,8 @@ const PROJECTS = [
       "CSS",
       "JavaScript",
       "Cloudflare Workers",
-      "Steam API"
+      "Steam API",
+      "RNG"
     ],
     links: [
       {
