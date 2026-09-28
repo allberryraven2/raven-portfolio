@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -233,6 +234,17 @@
       background: linear-gradient(180deg, #ffba78, #f59c52);
     }
 
+    .button.invite {
+      background: #5865f2;
+      border-color: #7289da;
+      color: #ffffff;
+    }
+
+    .button.invite:hover {
+      background: #6875f5;
+      border-color: #8a96ff;
+    }
+
     .hero-meta {
       display: flex;
       flex-wrap: wrap;
@@ -424,7 +436,7 @@
       padding-left: 22px;
     }
 
-    .section li + li {
+    .section li+li {
       margin-top: 7px;
     }
 
@@ -569,7 +581,7 @@
       background: linear-gradient(135deg, rgba(242, 148, 69, 0.09), rgba(255, 255, 255, 0.015));
     }
 
-    .interactive-box > p:first-of-type {
+    .interactive-box>p:first-of-type {
       margin-top: 0;
     }
 
@@ -734,6 +746,7 @@
     }
 
     @media (prefers-reduced-motion: reduce) {
+
       *,
       *::before,
       *::after {
@@ -776,7 +789,15 @@
 
         <div class="hero-actions">
           <a class="button primary" href="#quick-start">Start here</a>
+
           <a class="button" href="#no-slash">No-slash picker</a>
+
+          <a class="button invite"
+            href="https://discord.com/oauth2/authorize?client_id=1553074819346595840&permissions=84992&integration_type=0&scope=bot+applications.commands"
+            target="_blank" rel="noopener noreferrer">
+            + Add to Discord
+          </a>
+
           <a class="button" href="/#projects">← Project Explorer</a>
         </div>
 
@@ -797,10 +818,8 @@
         </div>
 
         <div class="preview-window">
-          <img
-            src="tf2-map-picker-preview-v2.png"
-            alt="TF2 Random Map Picker Discord result showing a selected map and reroll buttons"
-          />
+          <img src="tf2-map-picker-preview-v2.png"
+            alt="TF2 Random Map Picker Discord result showing a selected map and reroll buttons" />
         </div>
       </div>
     </section>
@@ -979,7 +998,8 @@
             <article class="card">
               <span class="result-name">🔄 Reroll</span>
               <p>
-                Picks another map using the same filters. When possible, it avoids immediately returning the exact same map.
+                Picks another map using the same filters. When possible, it avoids immediately returning the exact same
+                map.
               </p>
             </article>
 
@@ -1011,7 +1031,8 @@
             <article class="card command-card">
               <code>/mapinfo</code>
               <h3>Map lookup</h3>
-              <p>Start typing a map name or map code to see matching maps, then view its mode, code, season, and beta status.</p>
+              <p>Start typing a map name or map code to see matching maps, then view its mode, code, season, and beta
+                status.</p>
             </article>
 
             <article class="card command-card">
@@ -1023,13 +1044,15 @@
             <article class="card command-card">
               <code>/stats</code>
               <h3>Database stats</h3>
-              <p>Shows counts for standard maps, beta maps, game modes, Normal maps, Halloween maps, and Smissmas maps.</p>
+              <p>Shows counts for standard maps, beta maps, game modes, Normal maps, Halloween maps, and Smissmas maps.
+              </p>
             </article>
 
             <article class="card command-card">
               <code>/help</code>
               <h3>In-Discord help</h3>
-              <p>Explains the main map picker features, result buttons, filters, and the interactive mention-based picker.</p>
+              <p>Explains the main map picker features, result buttons, filters, and the interactive mention-based
+                picker.</p>
             </article>
 
             <article class="card command-card">
@@ -1110,7 +1133,8 @@
 
             <article class="card">
               <h3>Why are beta maps not appearing?</h3>
-              <p>Beta maps are excluded by default. Choose <strong>Include Beta Maps</strong> or <strong>Beta Maps Only</strong>.</p>
+              <p>Beta maps are excluded by default. Choose <strong>Include Beta Maps</strong> or <strong>Beta Maps
+                  Only</strong>.</p>
             </article>
 
             <article class="card">
@@ -1125,7 +1149,8 @@
 
             <article class="card">
               <h3>The bot does not answer a mention</h3>
-              <p>Make sure the bot can view the channel and send messages, then try a fresh selected Discord mention.</p>
+              <p>Make sure the bot can view the channel and send messages, then try a fresh selected Discord mention.
+              </p>
             </article>
 
             <article class="card">
@@ -1144,16 +1169,19 @@
           </div>
 
           <p>
-            TF2 Random Map Picker was built by Raven as a small Discord utility for people who know they want to play Team Fortress 2 but do not particularly want to decide where.
+            TF2 Random Map Picker was built by Raven as a small Discord utility for people who know they want to play
+            Team Fortress 2 but do not particularly want to decide where.
           </p>
 
           <p>
-            The bot supports both quick completely-random rolls and increasingly specific map pools, while keeping rerolls and follow-up choices one click away.
+            The bot supports both quick completely-random rolls and increasingly specific map pools, while keeping
+            rerolls and follow-up choices one click away.
           </p>
 
           <div class="about-actions">
             <a class="button primary" href="/#projects">View project</a>
-            <a class="button" href="https://buymeacoffee.com/ellipticbean" target="_blank" rel="noopener noreferrer">☕ Support development</a>
+            <a class="button" href="https://buymeacoffee.com/ellipticbean" target="_blank" rel="noopener noreferrer">☕
+              Support development</a>
             <a class="button" href="#top">↑ Back to top</a>
           </div>
         </section>
@@ -1204,4 +1232,5 @@
     updateActiveSection();
   </script>
 </body>
+
 </html>
