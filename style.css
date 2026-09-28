@@ -586,11 +586,12 @@ body {
     );
 }
 
-.profile-photo-wrap {
-  padding: 8px;
+.profile-photo {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
   border: 2px solid var(--line);
-  background: #e8e6cc;
-  box-shadow: 4px 4px 0 rgba(0,0,0,.22);
 }
 
 .avatar-placeholder {
