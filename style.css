@@ -1225,3 +1225,102 @@ body {
   aspect-ratio: 16 / 9;
   object-fit: cover;
 }
+/* =====================================================
+   PROJECT FOLDER BROWSER
+   ===================================================== */
+
+.project-folder {
+  appearance: none;
+  width: 100%;
+  padding: 0;
+  overflow: hidden;
+
+  border: 2px solid var(--line);
+  border-radius: 10px;
+
+  background: #dce8a5;
+  color: var(--ink);
+
+  box-shadow: var(--retro-shadow);
+
+  font: inherit;
+  text-align: left;
+
+  cursor: pointer;
+
+  transition:
+    transform 0.15s ease,
+    box-shadow 0.15s ease;
+}
+
+.project-folder:hover {
+  transform: translateY(-2px);
+}
+
+.project-folder:active {
+  transform: translateY(1px);
+}
+
+.project-folder-titlebar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 11px 14px;
+
+  border-bottom: 2px solid var(--line);
+
+  background:
+    linear-gradient(
+      180deg,
+      #eef5c8 0%,
+      #b7ce72 100%
+    );
+
+  font-weight: 800;
+}
+
+.project-folder-body {
+  display: flex;
+  align-items: center;
+
+  gap: 18px;
+
+  min-height: 125px;
+
+  padding: 18px;
+}
+
+.project-folder-icon {
+  flex: 0 0 auto;
+
+  font-size: 42px;
+}
+
+.project-folder-body h3 {
+  margin: 0 0 7px;
+
+  font-size: 20px;
+}
+
+.project-folder-body p {
+  margin: 0 0 12px;
+
+  line-height: 1.5;
+}
+
+.project-folder-count {
+  display: inline-block;
+
+  padding: 4px 9px;
+
+  border: 1px solid var(--line);
+  border-radius: 999px;
+
+  font-size: 12px;
+  font-weight: 800;
+
+  background: rgba(255, 255, 255, 0.35);
+}
+
+.project-folder
