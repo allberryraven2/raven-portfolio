@@ -653,6 +653,83 @@ function renderProjectSearch(grid, query) {
     );
   });
 }
+function renderRecentProjects() {
+  const root =
+    document.getElementById("recentProjects");
+
+  if (!root) return;
+
+  /*
+    The last 3 projects in PROJECTS
+    are treated as the newest.
+  */
+  const recentProjects = [
+    ...PROJECTS
+  ]
+    .slice(-3)
+    .reverse();
+
+  root.innerHTML = "";
+
+  recentProjects.forEach(project => {
+    const card =
+      document.createElement("button");
+
+    card.type = "button";
+    card.className =
+      "recent-project-card";
+
+    card.innerHTML = `
+      <div class="recent-project-top">
+
+        <span class="recent-project-icon">
+          ${project.icon}
+        </span>
+
+        <span class="recent-project-status">
+          ${project.status}
+        </span>
+
+      </div>
+
+      <strong>
+        ${project.title}
+      </strong>
+
+      <span class="recent-project-location">
+        ${project.group} / ${project.category}
+      </span>
+
+      <p>
+        ${project.description}
+      </p>
+
+      <span class="recent-project-open">
+        open project →
+      </span>
+    `;
+
+    card.addEventListener(
+      "click",
+      () => {
+        currentProjectGroup =
+          project.group ||
+          "Other Projects";
+
+        currentProjectCategory =
+          project.category ||
+          "Miscellaneous";
+
+        window.location.hash =
+          "projects";
+
+        renderProjects();
+      }
+    );
+
+    root.appendChild(card);
+  });
+}
 function renderProjects() {
   const grid =
     document.getElementById("projectGrid");
