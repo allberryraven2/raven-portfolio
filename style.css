@@ -1208,3 +1208,20 @@ body {
     order: -1;
   }
 }
+/* =====================================================
+   PROJECT SCREENSHOTS
+   ===================================================== */
+
+.project-preview {
+  width: 100%;
+  overflow: hidden;
+  border-bottom: 2px solid var(--line);
+  background: #111;
+}
+
+.project-preview img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+}
