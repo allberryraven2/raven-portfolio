@@ -189,7 +189,6 @@ window.addEventListener("hashchange", () => {
 // PROJECTS
 // ======================================================
 
-function renderProjects() {
 const PROJECT_GROUP_ORDER = [
   "Bots",
   "Websites",
