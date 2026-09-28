@@ -190,59 +190,374 @@ window.addEventListener("hashchange", () => {
 // ======================================================
 
 function renderProjects() {
-  const grid = document.getElementById("projectGrid");
+const PROJECT_GROUP_ORDER = [
+  "Bots",
+  "Websites",
+  "Other Projects"
+];
+
+const PROJECT_GROUP_INFO = {
+  Bots: {
+    icon: "🤖",
+    description: "Discord bots, automation, and tiny digital assistants."
+  },
+
+  Websites: {
+    icon: "🌐",
+    description: "Web apps, browser tools, and sites I've built."
+  },
+
+  "Other Projects": {
+    icon: "🧪",
+    description: "Scripts, APIs, experiments, games, mods, and miscellaneous creations."
+  }
+};
+
+let currentProjectGroup = null;
+let currentProjectCategory = null;
+
+
+function projectCountText(count) {
+  return `${count} ${count === 1 ? "project" : "projects"}`;
+}
+
+
+function createProjectCard(project) {
+  const card = document.createElement("article");
+
+  card.className =
+    `project-card${project.featured ? " featured" : ""}`;
+
+  const actionLinks = project.links
+    .map(link => {
+      const cls =
+        link.primary
+          ? "project-link primary"
+          : "project-link";
+
+      return `
+        <a
+          class="${cls}"
+          href="${link.url}"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          ${link.label}
+        </a>
+      `;
+    })
+    .join("");
+
+  card.innerHTML = `
+    <div class="project-card-head">
+      <h3>${project.icon} ${project.title}</h3>
+
+      <span class="status-pill">
+        ${project.status}
+      </span>
+    </div>
+
+    ${
+      project.image
+        ? `
+          <div class="project-preview">
+            <img
+              src="${project.image}"
+              alt="${project.title} screenshot"
+              loading="lazy"
+            >
+          </div>
+        `
+        : ""
+    }
+
+    <div class="project-body">
+
+      <p class="project-type">
+        ${project.type}
+      </p>
+
+      <p class="project-description">
+        ${project.description}
+      </p>
+
+      <div class="project-tags">
+        ${project.tags
+          .map(tag => `<span>${tag}</span>`)
+          .join("")}
+      </div>
+
+      ${
+        actionLinks
+          ? `
+            <div class="project-actions">
+              ${actionLinks}
+            </div>
+          `
+          : `
+            <p>
+              <small>
+                ${project.note || "No public link available."}
+              </small>
+            </p>
+          `
+      }
+
+    </div>
+  `;
+
+  return card;
+}
+
+
+function createProjectFolder(title, description, count, icon, onClick) {
+  const folder = document.createElement("button");
+
+  folder.type = "button";
+  folder.className = "project-folder";
+
+  folder.innerHTML = `
+    <div class="project-folder-titlebar">
+      <span>📁 ${title}</span>
+      <span aria-hidden="true">□ ─ ×</span>
+    </div>
+
+    <div class="project-folder-body">
+
+      <div class="project-folder-icon">
+        ${icon}
+      </div>
+
+      <div>
+        <h3>${title}</h3>
+
+        <p>
+          ${description}
+        </p>
+
+        <span class="project-folder-count">
+          ${projectCountText(count)}
+        </span>
+      </div>
+
+    </div>
+  `;
+
+  folder.addEventListener("click", onClick);
+
+  return folder;
+}
+
+
+function createProjectNavigation(backText, path, onBack) {
+  const navigation = document.createElement("div");
+
+  navigation.className = "project-folder-navigation";
+
+  navigation.innerHTML = `
+    <button
+      type="button"
+      class="project-folder-back"
+    >
+      ← ${backText}
+    </button>
+
+    <span class="project-folder-path">
+      ${path}
+    </span>
+  `;
+
+  navigation
+    .querySelector(".project-folder-back")
+    .addEventListener("click", onBack);
+
+  return navigation;
+}
+
+
+function renderProjectGroups(grid) {
+  const groupsInUse = [
+    ...new Set(
+      PROJECTS.map(
+        project => project.group || "Other Projects"
+      )
+    )
+  ];
+
+  const groups = [
+    ...PROJECT_GROUP_ORDER.filter(
+      group => groupsInUse.includes(group)
+    ),
+
+    ...groupsInUse.filter(
+      group => !PROJECT_GROUP_ORDER.includes(group)
+    )
+  ];
+
+  groups.forEach(groupName => {
+    const projects = PROJECTS.filter(
+      project =>
+        (project.group || "Other Projects") === groupName
+    );
+
+    if (projects.length === 0) return;
+
+    const categories = [
+      ...new Set(
+        projects.map(
+          project => project.category || "Miscellaneous"
+        )
+      )
+    ];
+
+    const info =
+      PROJECT_GROUP_INFO[groupName] || {
+        icon: "📦",
+        description: "Projects and experiments."
+      };
+
+    const folder = createProjectFolder(
+      groupName,
+      `${info.description} ${categories.join(" • ")}`,
+      projects.length,
+      info.icon,
+
+      () => {
+        currentProjectGroup = groupName;
+        currentProjectCategory = null;
+
+        renderProjects();
+      }
+    );
+
+    grid.appendChild(folder);
+  });
+}
+
+
+function renderProjectCategories(grid) {
+  const projects = PROJECTS.filter(
+    project =>
+      (project.group || "Other Projects") ===
+      currentProjectGroup
+  );
+
+  const navigation = createProjectNavigation(
+    "Projects",
+
+    `C:\\Users\\Raven\\Projects\\${currentProjectGroup}`,
+
+    () => {
+      currentProjectGroup = null;
+      currentProjectCategory = null;
+
+      renderProjects();
+    }
+  );
+
+  grid.appendChild(navigation);
+
+  const categories = [
+    ...new Set(
+      projects.map(
+        project => project.category || "Miscellaneous"
+      )
+    )
+  ].sort();
+
+  categories.forEach(category => {
+    const categoryProjects = projects.filter(
+      project =>
+        (project.category || "Miscellaneous") === category
+    );
+
+    let icon = "🧪";
+
+    if (currentProjectGroup === "Bots") {
+      icon = "🤖";
+    }
+
+    if (currentProjectGroup === "Websites") {
+      icon = "🌐";
+    }
+
+    const folder = createProjectFolder(
+      category,
+      `${projectCountText(categoryProjects.length)} in this folder.`,
+      categoryProjects.length,
+      icon,
+
+      () => {
+        currentProjectCategory = category;
+
+        renderProjects();
+      }
+    );
+
+    grid.appendChild(folder);
+  });
+}
+
+
+function renderProjectCards(grid) {
+  const navigation = createProjectNavigation(
+    currentProjectGroup,
+
+    `C:\\Users\\Raven\\Projects\\${currentProjectGroup}\\${currentProjectCategory}`,
+
+    () => {
+      currentProjectCategory = null;
+
+      renderProjects();
+    }
+  );
+
+  grid.appendChild(navigation);
+
+  const projects = PROJECTS.filter(project => {
+    const group =
+      project.group || "Other Projects";
+
+    const category =
+      project.category || "Miscellaneous";
+
+    return (
+      group === currentProjectGroup &&
+      category === currentProjectCategory
+    );
+  });
+
+  projects.forEach(project => {
+    grid.appendChild(
+      createProjectCard(project)
+    );
+  });
+}
+
+
+function renderProjects() {
+  const grid =
+    document.getElementById("projectGrid");
+
   if (!grid) return;
 
   grid.innerHTML = "";
 
-  PROJECTS.forEach(project => {
-    const card = document.createElement("article");
-    card.className = `project-card${project.featured ? " featured" : ""}`;
-
-    const actionLinks = project.links
-      .map(link => {
-        const cls = link.primary ? "project-link primary" : "project-link";
-        return `<a class="${cls}" href="${link.url}" target="_blank" rel="noopener noreferrer">${link.label}</a>`;
-      })
-      .join("");
-
-    card.innerHTML = `
-  <div class="project-card-head">
-    <h3>${project.icon} ${project.title}</h3>
-    <span class="status-pill">${project.status}</span>
-  </div>
-
-  ${
-    project.image
-      ? `<div class="project-preview">
-           <img
-             src="${project.image}"
-             alt="${project.title} screenshot"
-             loading="lazy"
-           >
-         </div>`
-      : ""
+  // Main project folders
+  if (!currentProjectGroup) {
+    renderProjectGroups(grid);
+    return;
   }
 
-  <div class="project-body">
-    <p class="project-type">${project.type}</p>
-    <p class="project-description">${project.description}</p>
+  // Categories inside Bots / Websites / etc.
+  if (!currentProjectCategory) {
+    renderProjectCategories(grid);
+    return;
+  }
 
-    <div class="project-tags">
-      ${project.tags.map(tag => `<span>${tag}</span>`).join("")}
-    </div>
-
-    ${
-      actionLinks
-        ? `<div class="project-actions">${actionLinks}</div>`
-        : `<p><small>${project.note || "No public link available."}</small></p>`
-    }
-  </div>
-`;
-    grid.appendChild(card);
-  });
+  // Individual project cards
+  renderProjectCards(grid);
 }
-
 // ======================================================
 // LINKS
 // ======================================================
