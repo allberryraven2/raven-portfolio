@@ -216,7 +216,18 @@
     .guide-sticky-nav a:hover {
       transform: translateY(-1px);
     }
+.guide-sticky-nav a.active {
+  background:
+    linear-gradient(
+      180deg,
+      var(--orange-soft),
+      var(--orange)
+    );
 
+  border-color: var(--line);
+
+  transform: translateY(-1px);
+}
 
     /* =====================================================
        HERO NAVIGATION
@@ -1573,7 +1584,97 @@
 
 
   </main>
+<script>
+  const guideNavLinks = [
+    ...document.querySelectorAll(
+      '.guide-sticky-nav a[href^="#"]'
+    )
+  ];
 
+  const guideSections =
+    guideNavLinks
+      .map(link => {
+        const target =
+          link.getAttribute("href");
+
+        return document.querySelector(target);
+      })
+      .filter(Boolean);
+
+
+  function setActiveGuideLink(sectionId) {
+
+    guideNavLinks.forEach(link => {
+
+      const isActive =
+        link.getAttribute("href") ===
+        `#${sectionId}`;
+
+      link.classList.toggle(
+        "active",
+        isActive
+      );
+
+      if (isActive) {
+        link.setAttribute(
+          "aria-current",
+          "location"
+        );
+      } else {
+        link.removeAttribute(
+          "aria-current"
+        );
+      }
+
+    });
+
+  }
+
+
+  function updateActiveGuideSection() {
+
+    const readingLine = 150;
+
+    let currentSection =
+      guideSections[0]?.id;
+
+    guideSections.forEach(section => {
+
+      const sectionTop =
+        section.getBoundingClientRect().top;
+
+      if (sectionTop <= readingLine) {
+        currentSection = section.id;
+      }
+
+    });
+
+    if (currentSection) {
+      setActiveGuideLink(
+        currentSection
+      );
+    }
+
+  }
+
+
+  window.addEventListener(
+    "scroll",
+    updateActiveGuideSection,
+    {
+      passive: true
+    }
+  );
+
+
+  window.addEventListener(
+    "load",
+    updateActiveGuideSection
+  );
+
+
+  updateActiveGuideSection();
+</script>
 </body>
 
 </html>
