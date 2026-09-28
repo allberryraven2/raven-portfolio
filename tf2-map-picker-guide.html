@@ -1,1687 +1,1223 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
   <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#0d0f12" />
 
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
-  />
-
-  <meta
-    name="theme-color"
-    content="#10140f"
-  />
-
-  <title>
-    TF2 Map Picker Guide | Raven
-  </title>
-
-  <link
-    rel="stylesheet"
-    href="style.css"
-  />
+  <title>TF2 Map Picker Guide | Raven</title>
 
   <style>
+    :root {
+      --bg: #0d0f12;
+      --bg-2: #111419;
+      --panel: #171b20;
+      --panel-2: #1d2229;
+      --panel-3: #242a32;
+      --line: #323943;
+      --line-soft: #272d35;
+      --text: #f4f1e9;
+      --muted: #aeb5bf;
+      --muted-2: #7f8996;
+      --orange: #f29445;
+      --orange-bright: #ffad62;
+      --orange-soft: rgba(242, 148, 69, 0.14);
+      --green: #6ccc7e;
+      --green-soft: rgba(108, 204, 126, 0.12);
+      --shadow: 0 18px 50px rgba(0, 0, 0, 0.34);
+      --radius: 16px;
+      --radius-sm: 10px;
+      --max: 1180px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
 
     html {
       scroll-behavior: smooth;
     }
 
-    /* The guide uses its own sticky jump bar,
-   so the normal portfolio header stays put. */
-.guide-shell > .topbar {
-  position: static;
-}
-
-
-    /* =====================================================
-       ANCHOR POSITIONING
-       ===================================================== */
-
-    #top,
-    #quick-start,
-    #map-command,
-    #filters,
-    #modes,
-    #buttons,
-    #commands,
-    #no-slash,
-    #troubleshooting {
-      scroll-margin-top: 90px;
+    body {
+      margin: 0;
+      min-height: 100vh;
+      color: var(--text);
+      background:
+        radial-gradient(circle at 14% 0%, rgba(242, 148, 69, 0.10), transparent 27rem),
+        radial-gradient(circle at 88% 16%, rgba(255, 255, 255, 0.035), transparent 25rem),
+        linear-gradient(180deg, #0b0d10 0%, var(--bg) 46%, #0a0c0f 100%);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
     }
 
-
-    /* =====================================================
-       HERO
-       ===================================================== */
-
-    .guide-hero {
-      margin-bottom: 4px;
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      opacity: 0.22;
+      background-image:
+        linear-gradient(rgba(255, 255, 255, 0.022) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.018) 1px, transparent 1px);
+      background-size: 28px 28px;
+      mask-image: linear-gradient(to bottom, black, transparent 82%);
     }
 
-    .guide-hero-body {
-      padding: 24px;
+    a {
+      color: inherit;
     }
 
-    .guide-hero h1 {
-      margin: 5px 0 10px;
-
-      font-size:
-        clamp(34px, 7vw, 62px);
+    code,
+    .mono {
+      font-family: "Courier New", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
     }
 
-    .guide-subtitle {
-      max-width: 760px;
-
-      font-size: 18px;
-      line-height: 1.6;
+    code {
+      padding: 2px 6px;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      background: #0d1014;
+      color: #ffd1a9;
+      font-size: 0.92em;
     }
 
-    .guide-status {
-      display: inline-block;
+    ::selection {
+      background: var(--orange);
+      color: #111;
+    }
 
-      margin-top: 10px;
+    .site-shell {
+      width: min(var(--max), calc(100% - 28px));
+      margin: 0 auto;
+      padding: 18px 0 48px;
+    }
 
-      padding: 5px 10px;
+    .topbar {
+      position: sticky;
+      top: 12px;
+      z-index: 50;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      min-height: 58px;
+      margin-bottom: 22px;
+      padding: 10px 14px;
+      border: 1px solid rgba(255, 255, 255, 0.09);
+      border-radius: 14px;
+      background: rgba(19, 22, 27, 0.88);
+      box-shadow: 0 12px 34px rgba(0, 0, 0, 0.28);
+      backdrop-filter: blur(14px);
+    }
 
-      border: 2px solid var(--line);
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      font-weight: 850;
+      letter-spacing: -0.02em;
+    }
+
+    .brand-mark {
+      width: 11px;
+      height: 11px;
+      border-radius: 50%;
+      background: var(--orange);
+      box-shadow: 0 0 0 5px rgba(242, 148, 69, 0.10);
+    }
+
+    .topnav {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      gap: 6px;
+    }
+
+    .topnav a {
+      padding: 8px 10px;
+      border-radius: 8px;
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .topnav a:hover {
+      background: var(--panel-3);
+      color: var(--text);
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1.04fr) minmax(360px, 0.96fr);
+      gap: 24px;
+      align-items: stretch;
+      margin-bottom: 24px;
+    }
+
+    .hero-copy,
+    .hero-preview {
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: linear-gradient(180deg, rgba(28, 32, 39, 0.96), rgba(20, 24, 29, 0.98));
+      box-shadow: var(--shadow);
+    }
+
+    .hero-copy {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      min-height: 440px;
+      padding: clamp(28px, 5vw, 54px);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-copy::after {
+      content: "";
+      position: absolute;
+      right: -90px;
+      bottom: -110px;
+      width: 280px;
+      height: 280px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(242, 148, 69, 0.16), transparent 68%);
+      pointer-events: none;
+    }
+
+    .eyebrow {
+      margin: 0 0 14px;
+      color: var(--orange-bright);
+      font-size: 12px;
+      font-weight: 850;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    .hero h1 {
+      margin: 0;
+      max-width: 780px;
+      font-size: clamp(44px, 7vw, 78px);
+      line-height: 0.98;
+      letter-spacing: -0.055em;
+    }
+
+    .hero-subtitle {
+      max-width: 690px;
+      margin: 22px 0 0;
+      color: var(--muted);
+      font-size: clamp(16px, 2vw, 19px);
+      line-height: 1.65;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 26px;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 42px;
+      padding: 9px 14px;
+      border: 1px solid var(--line);
+      border-radius: 9px;
+      background: var(--panel-3);
+      color: var(--text);
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 800;
+      transition: transform 120ms ease, border-color 120ms ease, background 120ms ease;
+    }
+
+    .button:hover {
+      transform: translateY(-1px);
+      border-color: #4d5663;
+      background: #2a3039;
+    }
+
+    .button.primary {
+      border-color: #d67b31;
+      background: linear-gradient(180deg, var(--orange-bright), var(--orange));
+      color: #18110b;
+    }
+
+    .button.primary:hover {
+      background: linear-gradient(180deg, #ffba78, #f59c52);
+    }
+
+    .hero-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 24px;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 6px 9px;
+      border: 1px solid var(--line);
       border-radius: 999px;
+      background: rgba(255, 255, 255, 0.025);
+      color: #c7cdd5;
+      font-size: 12px;
+      font-weight: 750;
+    }
 
+    .pill.active {
+      border-color: rgba(108, 204, 126, 0.32);
+      background: var(--green-soft);
+      color: #9be5a8;
+    }
+
+    .status-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--green);
+      box-shadow: 0 0 0 4px rgba(108, 204, 126, 0.10);
+    }
+
+    .hero-preview {
+      display: flex;
+      flex-direction: column;
+      min-height: 440px;
+      padding: 14px;
+    }
+
+    .preview-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 3px 3px 12px;
+      color: var(--muted-2);
       font-size: 12px;
       font-weight: 800;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
     }
 
-    .guide-preview {
-      width: 100%;
-
-      margin-top: 18px;
-
-      overflow: hidden;
-
-      border: 2px solid var(--line);
-      border-radius: 8px;
-    }
-
-    .guide-preview img {
-      display: block;
-
-      width: 100%;
-      height: auto;
-    }
-
-
-    /* =====================================================
-       MAIN GUIDE LAYOUT
-       ===================================================== */
-
-    .guide-grid {
+    .preview-window {
+      flex: 1;
       display: grid;
+      place-items: center;
+      min-height: 0;
+      overflow: hidden;
+      border: 1px solid var(--line-soft);
+      border-radius: 11px;
+      background: #111419;
+    }
 
-      grid-template-columns:
-        repeat(2, minmax(0, 1fr));
+    .preview-window img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      max-height: 410px;
+      object-fit: contain;
+      background: #111419;
+    }
 
+    .docs-layout {
+      display: grid;
+      grid-template-columns: 220px minmax(0, 1fr);
+      gap: 22px;
+      align-items: start;
+    }
+
+    .toc {
+      position: sticky;
+      top: 92px;
+      padding: 14px;
+      border: 1px solid var(--line);
+      border-radius: 13px;
+      background: rgba(20, 24, 29, 0.92);
+      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.22);
+    }
+
+    .toc-title {
+      margin: 0 0 10px;
+      padding: 2px 4px 9px;
+      border-bottom: 1px solid var(--line-soft);
+      color: var(--muted-2);
+      font-size: 11px;
+      font-weight: 900;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .toc-links {
+      display: grid;
+      gap: 4px;
+    }
+
+    .toc a {
+      display: flex;
+      align-items: center;
+      min-height: 36px;
+      padding: 7px 9px;
+      border: 1px solid transparent;
+      border-radius: 8px;
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 750;
+    }
+
+    .toc a:hover {
+      color: var(--text);
+      background: var(--panel-2);
+    }
+
+    .toc a.active {
+      border-color: rgba(242, 148, 69, 0.32);
+      background: var(--orange-soft);
+      color: #ffc490;
+    }
+
+    .docs {
+      display: grid;
+      gap: 16px;
+      min-width: 0;
+    }
+
+    .section {
+      scroll-margin-top: 92px;
+      padding: clamp(20px, 3vw, 30px);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: linear-gradient(180deg, rgba(25, 29, 35, 0.98), rgba(18, 22, 27, 0.98));
+      box-shadow: 0 14px 36px rgba(0, 0, 0, 0.22);
+    }
+
+    .section-heading {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
       gap: 18px;
+      margin-bottom: 20px;
     }
 
-    .guide-section .window-body {
-      padding: 22px;
+    .section-kicker {
+      margin: 0 0 7px;
+      color: var(--orange-bright);
+      font-family: "Courier New", ui-monospace, monospace;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.10em;
+      text-transform: uppercase;
     }
 
-    .guide-section h2,
-    .guide-section h3 {
-      margin-top: 0;
+    .section h2 {
+      margin: 0;
+      font-size: clamp(25px, 3.5vw, 36px);
+      letter-spacing: -0.035em;
     }
 
-    .guide-section p,
-    .guide-section li {
-      line-height: 1.6;
+    .section h3 {
+      margin: 0 0 7px;
+      font-size: 17px;
     }
 
-    .guide-section ul,
-    .guide-section ol {
+    .section p,
+    .section li {
+      color: var(--muted);
+      line-height: 1.65;
+    }
+
+    .section strong {
+      color: var(--text);
+    }
+
+    .section ul,
+    .section ol {
+      margin: 12px 0 0;
       padding-left: 22px;
     }
 
-    .guide-section li + li {
-      margin-top: 8px;
+    .section li + li {
+      margin-top: 7px;
     }
 
-
-    /* =====================================================
-       BACK BUTTON
-       ===================================================== */
-
-    .guide-back {
-      margin-bottom: 4px;
+    .quick-grid,
+    .two-column,
+    .button-grid,
+    .command-grid,
+    .step-grid,
+    .trouble-grid {
+      display: grid;
+      gap: 12px;
     }
 
-
-    /* =====================================================
-       STICKY JUMP NAVIGATION
-       ===================================================== */
-
-    .guide-sticky-nav {
-      position: sticky;
-      top: 10px;
-      z-index: 20;
-
-      display: flex;
-      align-items: center;
-
-      gap: 7px;
-
-      overflow-x: auto;
-
-      padding: 9px;
-
-      border: 2px solid var(--line);
-      border-radius: 9px;
-
-      background: #f3efd8;
-
-      box-shadow: var(--retro-shadow);
-
-      scrollbar-width: thin;
+    .quick-grid,
+    .two-column {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 
-    .guide-sticky-nav span {
-      flex: 0 0 auto;
-
-      padding: 0 5px;
-
-      font-family: monospace;
-      font-size: 12px;
-      font-weight: 800;
+    .button-grid,
+    .command-grid,
+    .trouble-grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
     }
 
-    .guide-sticky-nav a {
-      flex: 0 0 auto;
-
-      padding: 6px 9px;
-
-      border: 2px solid var(--line);
-      border-radius: 6px;
-
-      background: #dce8a5;
-      color: var(--ink);
-
-      font-size: 12px;
-      font-weight: 800;
-      text-decoration: none;
+    .step-grid {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
     }
 
-    .guide-sticky-nav a:hover {
-      transform: translateY(-1px);
-    }
-.guide-sticky-nav a.active {
-  background:
-    linear-gradient(
-      180deg,
-      var(--orange-soft),
-      var(--orange)
-    );
-
-  border-color: var(--line);
-
-  transform: translateY(-1px);
-}
-
-    /* =====================================================
-       HERO NAVIGATION
-       ===================================================== */
-
-    .guide-nav {
-      display: flex;
-      flex-wrap: wrap;
-
-      gap: 8px;
-
-      margin-top: 18px;
+    .card {
+      padding: 17px;
+      border: 1px solid var(--line-soft);
+      border-radius: 11px;
+      background: rgba(255, 255, 255, 0.022);
     }
 
-    .guide-nav a {
-      padding: 7px 10px;
-
-      border: 2px solid var(--line);
-      border-radius: 7px;
-
-      background: #f3efd8;
-      color: var(--ink);
-
-      font-weight: 800;
-      text-decoration: none;
+    .card.accent {
+      border-color: rgba(242, 148, 69, 0.30);
+      background: linear-gradient(135deg, rgba(242, 148, 69, 0.09), rgba(255, 255, 255, 0.018));
     }
 
+    .card p {
+      margin: 8px 0 0;
+    }
 
-    /* =====================================================
-       TAGS
-       ===================================================== */
+    .card-number {
+      display: grid;
+      place-items: center;
+      width: 30px;
+      height: 30px;
+      margin-bottom: 13px;
+      border-radius: 8px;
+      background: var(--orange-soft);
+      color: var(--orange-bright);
+      font-family: "Courier New", monospace;
+      font-weight: 900;
+    }
 
-    .guide-tags {
-      display: flex;
-      flex-wrap: wrap;
-
-      gap: 8px;
-
+    .command-box {
       margin-top: 14px;
+      padding: 14px 16px;
+      overflow-x: auto;
+      border: 1px solid var(--line-soft);
+      border-left: 3px solid var(--orange);
+      border-radius: 9px;
+      background: #0d1014;
+      color: #f0c39f;
+      font-family: "Courier New", ui-monospace, monospace;
+      font-size: 13px;
+      line-height: 1.8;
+      white-space: nowrap;
     }
 
-    .guide-tags span {
-      padding: 5px 9px;
-
-      border: 2px solid var(--line);
-      border-radius: 6px;
-
-      background: #f3efd8;
-
-      font-family: monospace;
-      font-size: 12px;
+    .filter-list {
+      display: grid;
+      gap: 10px;
+      margin-top: 12px;
     }
 
+    .filter-item {
+      display: grid;
+      grid-template-columns: 42px minmax(0, 1fr);
+      gap: 12px;
+      align-items: start;
+      padding: 13px;
+      border: 1px solid var(--line-soft);
+      border-radius: 10px;
+      background: rgba(255, 255, 255, 0.018);
+    }
 
-    /* =====================================================
-       SUPPORTED MODES
-       ===================================================== */
+    .filter-icon {
+      display: grid;
+      place-items: center;
+      width: 42px;
+      height: 42px;
+      border-radius: 9px;
+      background: var(--orange-soft);
+      font-size: 20px;
+    }
+
+    .filter-item p {
+      margin: 4px 0 0;
+    }
 
     .mode-grid {
       display: grid;
-
-      grid-template-columns:
-        repeat(
-          auto-fit,
-          minmax(145px, 1fr)
-        );
-
-      gap: 7px;
-
-      margin: 16px 0;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 8px;
+      margin-top: 16px;
     }
 
     .mode-grid span {
-      padding: 7px 9px;
-
-      border: 2px solid var(--line);
-      border-radius: 6px;
-
-      background: #f3efd8;
-
-      font-family: monospace;
-      font-size: 11px;
-      font-weight: 700;
-
+      padding: 9px 10px;
+      border: 1px solid var(--line-soft);
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.018);
+      color: #c5ccd5;
+      font-family: "Courier New", monospace;
+      font-size: 12px;
       text-align: center;
     }
 
-
-    /* =====================================================
-       COMMAND BOXES
-       ===================================================== */
-
-    .guide-command {
-      position: relative;
-
-      margin: 14px 0;
-
-      padding: 15px 15px 15px 18px;
-
-      border: 2px solid var(--line);
-      border-left: 6px solid #ff8a24;
-
-      border-radius: 8px;
-
-      background:
-        linear-gradient(
-          135deg,
-          rgba(255, 255, 255, 0.38),
-          rgba(255, 255, 255, 0.14)
-        );
+    .result-name {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      margin-bottom: 7px;
+      color: var(--text);
+      font-weight: 850;
     }
 
-    .guide-command code {
+    .command-card code {
       display: inline-block;
+      margin-bottom: 8px;
+      color: #ffbd83;
+      font-weight: 850;
+    }
 
-      margin-bottom: 5px;
+    .interactive-box {
+      padding: 18px;
+      border: 1px solid rgba(242, 148, 69, 0.34);
+      border-radius: 12px;
+      background: linear-gradient(135deg, rgba(242, 148, 69, 0.09), rgba(255, 255, 255, 0.015));
+    }
 
-      padding: 3px 7px;
+    .interactive-box > p:first-of-type {
+      margin-top: 0;
+    }
 
+    .picker-preview {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 16px 0 0;
+    }
+
+    .picker-chip {
+      padding: 8px 10px;
       border: 1px solid var(--line);
-      border-radius: 4px;
-
-      background: #151814;
-      color: #f4f0da;
-
-      font-size: 14px;
+      border-radius: 8px;
+      background: var(--panel-3);
+      color: #dbe0e6;
+      font-size: 12px;
       font-weight: 800;
     }
 
-    .guide-command p {
-      margin-bottom: 0;
+    .picker-chip.primary {
+      border-color: #d67b31;
+      background: var(--orange);
+      color: #17100a;
     }
 
-
-    /* =====================================================
-       FILTERS
-       ===================================================== */
-
-    .guide-option {
-      margin: 12px 0;
-
-      padding-left: 14px;
-
-      border-left: 4px solid #ff8a24;
-    }
-
-    .guide-option strong {
-      display: block;
-
-      margin-bottom: 4px;
-    }
-
-
-    /* =====================================================
-       RESULT BUTTON DESCRIPTIONS
-       ===================================================== */
-
-    .guide-button-list {
-      display: grid;
-
+    .about-actions {
+      display: flex;
+      flex-wrap: wrap;
       gap: 10px;
+      margin-top: 18px;
     }
 
-    .guide-button {
-      padding: 12px;
-
-      border: 2px solid var(--line);
-      border-radius: 8px;
-
-      background:
-        rgba(
-          255,
-          255,
-          255,
-          0.25
-        );
+    .bottom-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-top: 20px;
+      padding: 16px 2px 0;
+      color: var(--muted-2);
+      font-size: 12px;
     }
 
-    .guide-button strong {
-      display: block;
-
-      margin-bottom: 4px;
+    .bottom-row a {
+      color: var(--muted);
+      text-decoration: none;
+      font-weight: 800;
     }
 
-
-    /* =====================================================
-       COMMAND EXAMPLES
-       ===================================================== */
-
-    .guide-example {
-      padding: 14px;
-
-      overflow-x: auto;
-
-      border: 2px solid var(--line);
-      border-radius: 8px;
-
-      background: #151814;
-      color: #f4f0da;
-
-      font-family: monospace;
-      line-height: 1.7;
+    .bottom-row a:hover {
+      color: var(--orange-bright);
     }
 
-
-    /* =====================================================
-       NO-SLASH DEVELOPMENT NOTICE
-       ===================================================== */
-
-    .guide-coming-soon {
-      padding: 14px;
-
-      border: 2px dashed var(--line);
-      border-radius: 8px;
-
-      background:
-        rgba(
-          255,
-          138,
-          36,
-          0.12
-        );
-    }
-
-
-    /* =====================================================
-       TROUBLESHOOTING
-       ===================================================== */
-
-    .guide-trouble-item {
-      margin-top: 15px;
-
-      padding-top: 15px;
-
-      border-top:
-        1px dashed var(--line);
-    }
-
-    .guide-trouble-item:first-of-type {
-      margin-top: 0;
-      padding-top: 0;
-
-      border-top: 0;
-    }
-
-
-    /* =====================================================
-       BACK TO TOP
-       ===================================================== */
-
-    .guide-bottom-nav {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 10px;
-
-  margin: 4px 0;
-    }
-
-    /* =====================================================
-       MOBILE
-       ===================================================== */
-
-    @media (max-width: 700px) {
-
-      .guide-grid {
+    @media (max-width: 980px) {
+      .hero {
         grid-template-columns: 1fr;
       }
 
-      .guide-hero-body {
-        padding: 18px;
+      .hero-copy,
+      .hero-preview {
+        min-height: auto;
       }
 
-      .guide-section .window-body {
-        padding: 17px;
+      .hero-preview {
+        max-height: none;
       }
 
-      .guide-sticky-nav {
-        top: 6px;
-
-        margin-left: -2px;
-        margin-right: -2px;
+      .docs-layout {
+        grid-template-columns: 1fr;
       }
 
-      .guide-sticky-nav span {
+      .toc {
+        position: sticky;
+        top: 82px;
+        z-index: 35;
+        padding: 8px;
+        overflow-x: auto;
+      }
+
+      .toc-title {
         display: none;
       }
 
-      .mode-grid {
-        grid-template-columns:
-          repeat(
-            2,
-            minmax(0, 1fr)
-          );
+      .toc-links {
+        display: flex;
+        width: max-content;
       }
 
-      .mode-grid span {
-        font-size: 10px;
+      .toc a {
+        white-space: nowrap;
       }
 
+      .step-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
     }
 
-  </style>
+    @media (max-width: 760px) {
+      .site-shell {
+        width: min(100% - 18px, var(--max));
+        padding-top: 9px;
+      }
 
+      .topbar {
+        position: static;
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .topnav {
+        width: 100%;
+        justify-content: flex-start;
+      }
+
+      .topnav a {
+        padding-left: 0;
+        padding-right: 13px;
+      }
+
+      .toc {
+        top: 6px;
+      }
+
+      .quick-grid,
+      .two-column,
+      .button-grid,
+      .command-grid,
+      .trouble-grid,
+      .step-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-copy {
+        padding: 26px 22px;
+      }
+
+      .hero h1 {
+        font-size: clamp(42px, 14vw, 62px);
+      }
+
+      .hero-preview {
+        padding: 10px;
+      }
+
+      .preview-window img {
+        max-height: 330px;
+      }
+
+      .section {
+        padding: 20px;
+      }
+
+      .section-heading {
+        display: block;
+      }
+
+      .bottom-row {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        scroll-behavior: auto !important;
+        transition: none !important;
+      }
+    }
+  </style>
 </head>
 
-
 <body>
+  <main class="site-shell" id="top">
 
-  <div
-    class="desktop-noise"
-    aria-hidden="true"
-  ></div>
-
-
-  <main class="shell guide-shell">
-
-
-    <!-- =================================================
-         TOP NAVIGATION
-         ================================================= -->
-
-    <header class="topbar window">
-
-      <a
-        class="brand"
-        href="/#home"
-        aria-label="Raven home"
-      >
-
-        <span class="brand-dot"></span>
-
-        <span>
-          Raven.exe
-        </span>
-
+    <header class="topbar">
+      <a class="brand" href="/#home" aria-label="Raven home">
+        <span class="brand-mark"></span>
+        <span>Raven.exe</span>
       </a>
 
-
-      <nav
-        class="nav"
-        aria-label="Guide navigation"
-      >
-
-        <a href="/#home">
-          home
-        </a>
-
-        <a href="/#projects">
-          projects
-        </a>
-
-        <a href="#quick-start">
-          quick start
-        </a>
-
-        <a href="#commands">
-          commands
-        </a>
-
+      <nav class="topnav" aria-label="Main navigation">
+        <a href="/#home">Home</a>
+        <a href="/#projects">Projects</a>
+        <a href="#quick-start">Quick Start</a>
+        <a href="#commands">Commands</a>
+        <a href="https://buymeacoffee.com/ellipticbean" target="_blank" rel="noopener noreferrer">Support</a>
       </nav>
-
-
-      <div
-        class="desktop-status"
-        aria-hidden="true"
-      >
-
-        <span>
-          ● documentation
-        </span>
-
-      </div>
-
     </header>
 
+    <section class="hero" aria-labelledby="guide-title">
+      <div class="hero-copy">
+        <p class="eyebrow mono">Documentation / Discord Bot</p>
 
+        <h1 id="guide-title">TF2 Random Map Picker</h1>
 
-    <!-- =================================================
-         BACK TO PROJECT EXPLORER
-         ================================================= -->
+        <p class="hero-subtitle">
+          A Discord bot for randomly choosing Team Fortress 2 maps with mode,
+          season, and beta-map filters, plus rerolls, map lookup, statistics,
+          and a no-slash interactive picker.
+        </p>
 
-    <div class="guide-back">
+        <div class="hero-actions">
+          <a class="button primary" href="#quick-start">Start here</a>
+          <a class="button" href="#no-slash">No-slash picker</a>
+          <a class="button" href="/#projects">← Project Explorer</a>
+        </div>
 
-      <a
-        class="btn"
-        href="/#projects"
-      >
-        ← back to Project Explorer
-      </a>
-
-    </div>
-
-
-
-    <!-- =================================================
-         STICKY JUMP NAV
-         ================================================= -->
-
-    <nav
-      class="guide-sticky-nav"
-      aria-label="Jump to guide section"
-    >
-
-      <span>
-        jump_to.exe →
-      </span>
-
-      <a href="#quick-start">
-        Quick Start
-      </a>
-
-      <a href="#map-command">
-        /map
-      </a>
-
-      <a href="#filters">
-        Filters
-      </a>
-
-      <a href="#modes">
-        Modes
-      </a>
-
-      <a href="#buttons">
-        Buttons
-      </a>
-
-      <a href="#commands">
-        Commands
-      </a>
-
-      <a href="#no-slash">
-        No-Slash
-      </a>
-
-      <a href="#troubleshooting">
-        Troubleshooting
-      </a>
-
-    </nav>
-
-
-
-    <!-- =================================================
-         HERO
-         ================================================= -->
-
-    <section
-      class="window guide-hero"
-      id="top"
-    >
-
-      <div class="window-titlebar">
-
-        <span>
-          tf2_map_picker_help.exe
-        </span>
-
-        <span
-          class="window-icons"
-          aria-hidden="true"
-        >
-          □ ─ ×
-        </span>
-
+        <div class="hero-meta" aria-label="Project information">
+          <span class="pill active"><span class="status-dot"></span>ACTIVE</span>
+          <span class="pill">Discord Bot</span>
+          <span class="pill">TF2</span>
+          <span class="pill">Discord.js</span>
+          <span class="pill">TypeScript</span>
+          <span class="pill">RNG</span>
+        </div>
       </div>
 
-
-      <div class="guide-hero-body">
-
-        <p class="eyebrow">
-          C:\Users\Raven\Bots\Gaming\TF2MapPicker
-        </p>
-
-
-        <h1>
-          🗺️ TF2 Random Map Picker
-        </h1>
-
-
-        <p class="guide-subtitle">
-          A Discord bot for randomly choosing
-          Team Fortress 2 maps with optional
-          game mode, season, and beta-map
-          filters.
-        </p>
-
-
-        <span class="guide-status">
-          ● ACTIVE
-        </span>
-
-
-        <div class="guide-tags">
-
-          <span>Discord Bot</span>
-          <span>TF2</span>
-          <span>RNG</span>
-          <span>Discord.js</span>
-          <span>TypeScript</span>
-
+      <div class="hero-preview">
+        <div class="preview-bar mono">
+          <span>Discord result preview</span>
+          <span>TF2_MAP_PICKER</span>
         </div>
 
-
-        <div class="guide-nav">
-
-          <a href="#quick-start">
-            Quick Start
-          </a>
-
-          <a href="#map-command">
-            /map
-          </a>
-
-          
-
-        </div>
-
-
-        <div class="guide-preview">
-
+        <div class="preview-window">
           <img
             src="tf2-map-picker-preview-v2.png"
-            alt="TF2 Map Picker Discord result"
-          >
-
+            alt="TF2 Random Map Picker Discord result showing a selected map and reroll buttons"
+          />
         </div>
-
       </div>
-
     </section>
 
+    <div class="docs-layout">
+      <aside class="toc" aria-label="Guide sections">
+        <p class="toc-title mono">On this page</p>
 
+        <nav class="toc-links">
+          <a href="#quick-start">Quick Start</a>
+          <a href="#map-command">/map</a>
+          <a href="#filters">Filters</a>
+          <a href="#modes">Modes</a>
+          <a href="#buttons">Result Buttons</a>
+          <a href="#commands">Commands</a>
+          <a href="#no-slash">No-Slash Picker</a>
+          <a href="#troubleshooting">Troubleshooting</a>
+          <a href="#about">About</a>
+        </nav>
+      </aside>
 
-    <!-- =================================================
-         QUICK START
-         ================================================= -->
+      <div class="docs">
 
-    <section
-      id="quick-start"
-      class="window guide-section"
-    >
+        <section class="section" id="quick-start">
+          <div class="section-heading">
+            <div>
+              <p class="section-kicker">01 / Getting started</p>
+              <h2>Quick Start</h2>
+            </div>
+          </div>
 
-      <div class="window-titlebar">
+          <div class="quick-grid">
+            <article class="card accent">
+              <h3>⌨️ Use a slash command</h3>
+              <p>
+                Type <code>/map</code> in a Discord channel where the bot is available.
+                Add mode, season, or beta filters if you want a more specific pool.
+              </p>
 
-        <span>
-          quick_start.txt
-        </span>
+              <div class="command-box">
+                /map<br />
+                /map mode:Payload<br />
+                /map mode:Payload season:Halloween<br />
+                /map mode:Payload season:Halloween beta:Exclude Beta Maps
+              </div>
+            </article>
 
-        <span
-          class="window-icons"
-          aria-hidden="true"
-        >
-          □ ─ ×
-        </span>
+            <article class="card">
+              <h3>🖱️ Use the interactive picker</h3>
+              <p>
+                Mention <strong>@TF2 Random Map Picker</strong> in a server channel.
+                Then choose <strong>Pick Any Map</strong> or open the filter picker.
+              </p>
 
-      </div>
+              <div class="picker-preview" aria-label="Interactive picker actions">
+                <span class="picker-chip primary">🎲 Pick Any Map</span>
+                <span class="picker-chip">⚙️ Choose Filters</span>
+              </div>
+            </article>
+          </div>
+        </section>
 
+        <section class="section" id="map-command">
+          <div class="section-heading">
+            <div>
+              <p class="section-kicker">02 / Main command</p>
+              <h2>🎲 /map</h2>
+            </div>
+          </div>
 
-      <div class="window-body">
+          <div class="two-column">
+            <article class="card accent">
+              <h3>What it does</h3>
+              <p>
+                <code>/map</code> randomly picks one map from the pool created by your selected filters.
+                With no options selected, the bot can choose any non-beta map regardless of mode or season.
+              </p>
+            </article>
 
-        <h2>
-          Quick Start
-        </h2>
+            <article class="card">
+              <h3>What the result shows</h3>
+              <ul>
+                <li>Map name and game mode</li>
+                <li>TF2 map code</li>
+                <li>Your active filters</li>
+                <li>Number of maps in the matching pool</li>
+                <li>Season when applicable</li>
+                <li>Beta status when applicable</li>
+              </ul>
+            </article>
+          </div>
+        </section>
 
+        <section class="section" id="filters">
+          <div class="section-heading">
+            <div>
+              <p class="section-kicker">03 / Narrow the pool</p>
+              <h2>🔎 Map Filters</h2>
+            </div>
+          </div>
 
-        <p>
-          The fastest way to use TF2 Random
-          Map Picker is with the
-          <strong>/map</strong> command.
-        </p>
+          <div class="filter-list">
+            <div class="filter-item">
+              <div class="filter-icon">🎮</div>
+              <div>
+                <h3>Mode</h3>
+                <p>Choose a specific game mode, or leave it open to allow any mode.</p>
+              </div>
+            </div>
 
+            <div class="filter-item">
+              <div class="filter-icon">🎃</div>
+              <div>
+                <h3>Season</h3>
+                <p>Choose Normal, Halloween, or Smissmas. Leaving it open allows maps from any season.</p>
+              </div>
+            </div>
 
-        <ol>
+            <div class="filter-item">
+              <div class="filter-icon">🧪</div>
+              <div>
+                <h3>Beta</h3>
+                <p>Beta maps are excluded by default. You can include them or choose only beta maps.</p>
+              </div>
+            </div>
+          </div>
+        </section>
 
-          <li>
-            Type <code>/map</code> in a Discord
-            channel where the bot is available.
-          </li>
-
-          <li>
-            Optionally choose a game mode,
-            season, and beta-map setting.
-          </li>
-
-          <li>
-            Send the command.
-          </li>
-
-          <li>
-            The bot randomly selects a map from
-            every map matching your filters.
-          </li>
-
-          <li>
-            Use the buttons underneath the
-            result if you want another map.
-          </li>
-
-        </ol>
-
-
-        <div class="guide-example">
-          /map<br>
-          /map mode:Payload<br>
-          /map mode:Payload season:Halloween<br>
-          /map mode:Payload season:Halloween beta:Exclude Beta Maps
-        </div>
-
-      </div>
-
-    </section>
-
-
-
-    <!-- =================================================
-         MAP + FILTERS
-         ================================================= -->
-
-    <section class="guide-grid">
-
-
-      <div
-        id="map-command"
-        class="window guide-section"
-      >
-
-        <div class="window-titlebar">
-
-          <span>
-            map_command.txt
-          </span>
-
-          <span
-            class="window-icons"
-            aria-hidden="true"
-          >
-            □ ─ ×
-          </span>
-
-        </div>
-
-
-        <div class="window-body">
-
-          <h2>
-            🎲 /map
-          </h2>
-
+        <section class="section" id="modes">
+          <div class="section-heading">
+            <div>
+              <p class="section-kicker">04 / Map database</p>
+              <h2>🎮 Supported Game Modes</h2>
+            </div>
+          </div>
 
           <p>
-            The bot's main command. It randomly
-            picks one map from the pool produced
-            by your selected filters.
+            The mode filter includes standard and less-common official TF2 modes.
+            Use <code>/modes</code> in Discord to see the current database and map counts.
           </p>
 
+          <div class="mode-grid">
+            <span>Capture the Flag</span>
+            <span>Control Points</span>
+            <span>Attack/Defend</span>
+            <span>Payload</span>
+            <span>Payload Race</span>
+            <span>King of the Hill</span>
+            <span>Medieval Mode</span>
+            <span>Mann vs. Machine</span>
+            <span>Player Destruction</span>
+            <span>Robot Destruction</span>
+            <span>PASS Time</span>
+            <span>Special Delivery</span>
+            <span>Territorial Control</span>
+            <span>Mannpower</span>
+            <span>Arena</span>
+            <span>Versus Saxton Hale</span>
+            <span>Zombie Infection</span>
+            <span>Tug of War</span>
+            <span>Hold the Flag</span>
+            <span>Attack/Defend + Payload</span>
+            <span>Domination</span>
+          </div>
+        </section>
 
-          <div class="guide-command">
+        <section class="section" id="buttons">
+          <div class="section-heading">
+            <div>
+              <p class="section-kicker">05 / After a roll</p>
+              <h2>Buttons Under a Map Result</h2>
+            </div>
+          </div>
 
-            <code>
-              /map
-            </code>
+          <div class="button-grid">
+            <article class="card">
+              <span class="result-name">🔄 Reroll</span>
+              <p>
+                Picks another map using the same filters. When possible, it avoids immediately returning the exact same map.
+              </p>
+            </article>
 
+            <article class="card">
+              <span class="result-name">🎮 Another From This Mode</span>
+              <p>
+                Picks another map from the current map's game mode while preserving applicable season and beta filters.
+              </p>
+            </article>
+
+            <article class="card">
+              <span class="result-name">🎲 Any Map</span>
+              <p>
+                Clears the mode and season filters and rolls from the bot's general non-beta map pool.
+              </p>
+            </article>
+          </div>
+        </section>
+
+        <section class="section" id="commands">
+          <div class="section-heading">
+            <div>
+              <p class="section-kicker">06 / Utility commands</p>
+              <h2>Other Commands</h2>
+            </div>
+          </div>
+
+          <div class="command-grid">
+            <article class="card command-card">
+              <code>/mapinfo</code>
+              <h3>Map lookup</h3>
+              <p>Start typing a map name or map code to see matching maps, then view its mode, code, season, and beta status.</p>
+            </article>
+
+            <article class="card command-card">
+              <code>/modes</code>
+              <h3>Mode list</h3>
+              <p>Displays the game modes currently available in the map database along with their map counts.</p>
+            </article>
+
+            <article class="card command-card">
+              <code>/stats</code>
+              <h3>Database stats</h3>
+              <p>Shows counts for standard maps, beta maps, game modes, Normal maps, Halloween maps, and Smissmas maps.</p>
+            </article>
+
+            <article class="card command-card">
+              <code>/help</code>
+              <h3>In-Discord help</h3>
+              <p>Explains the main map picker features, result buttons, filters, and the interactive mention-based picker.</p>
+            </article>
+
+            <article class="card command-card">
+              <code>/support</code>
+              <h3>Support development</h3>
+              <p>Shows information about optional support for the bot and provides a Buy Me a Coffee button.</p>
+            </article>
+          </div>
+        </section>
+
+        <section class="section" id="no-slash">
+          <div class="section-heading">
+            <div>
+              <p class="section-kicker">07 / No slash command required</p>
+              <h2>🖱️ Interactive Map Picker</h2>
+            </div>
+          </div>
+
+          <div class="interactive-box">
             <p>
-              With no options selected, the bot
-              can choose from any non-beta map
-              regardless of mode or season.
+              Mention <strong>@TF2 Random Map Picker</strong> in a server channel to open the interactive picker.
+              You can immediately roll a normal map or configure the same core filters without typing a slash command.
             </p>
 
+            <div class="step-grid">
+              <article class="card">
+                <span class="card-number">1</span>
+                <h3>Mention the bot</h3>
+                <p>Send a message containing <strong>@TF2 Random Map Picker</strong>.</p>
+              </article>
+
+              <article class="card">
+                <span class="card-number">2</span>
+                <h3>Pick or customize</h3>
+                <p>Choose <strong>Pick Any Map</strong> or press <strong>Choose Filters</strong>.</p>
+              </article>
+
+              <article class="card">
+                <span class="card-number">3</span>
+                <h3>Choose filters</h3>
+                <p>Select a mode, season, and beta-map setting from the menus.</p>
+              </article>
+
+              <article class="card">
+                <span class="card-number">4</span>
+                <h3>Roll the map</h3>
+                <p>Press <strong>Pick Map</strong>, or use <strong>Reset Filters</strong> to return to the defaults.</p>
+              </article>
+            </div>
+
+            <div class="picker-preview" aria-label="Interactive filter controls">
+              <span class="picker-chip">Mode</span>
+              <span class="picker-chip">Season</span>
+              <span class="picker-chip">Beta</span>
+              <span class="picker-chip primary">🎲 Pick Map</span>
+              <span class="picker-chip">↩️ Reset Filters</span>
+            </div>
+
+            <p>
+              Slash commands such as <code>/map</code> remain available as another way to use the bot.
+            </p>
+          </div>
+        </section>
+
+        <section class="section" id="troubleshooting">
+          <div class="section-heading">
+            <div>
+              <p class="section-kicker">08 / Common questions</p>
+              <h2>Troubleshooting</h2>
+            </div>
           </div>
 
+          <div class="trouble-grid">
+            <article class="card">
+              <h3>No maps match my filters</h3>
+              <p>Some combinations may have no matching maps. Remove one filter or choose a broader setting.</p>
+            </article>
 
-          <p>
-            The result shows:
-          </p>
+            <article class="card">
+              <h3>Why are beta maps not appearing?</h3>
+              <p>Beta maps are excluded by default. Choose <strong>Include Beta Maps</strong> or <strong>Beta Maps Only</strong>.</p>
+            </article>
 
+            <article class="card">
+              <h3>What is the map code?</h3>
+              <p>The map code is TF2's internal identifier, such as <code>pl_upward</code>.</p>
+            </article>
 
-          <ul>
+            <article class="card">
+              <h3>What does Map Pool mean?</h3>
+              <p>Map Pool is the number of maps that matched your filters before the bot randomly chose one.</p>
+            </article>
 
-            <li>
-              Map name
-            </li>
+            <article class="card">
+              <h3>The bot does not answer a mention</h3>
+              <p>Make sure the bot can view the channel and send messages, then try a fresh selected Discord mention.</p>
+            </article>
 
-            <li>
-              Game mode
-            </li>
+            <article class="card">
+              <h3>I just want something random</h3>
+              <p>Use <code>/map</code> with no filters or mention the bot and press <strong>Pick Any Map</strong>.</p>
+            </article>
+          </div>
+        </section>
 
-            <li>
-              TF2 map code
-            </li>
-
-            <li>
-              Your active filters
-            </li>
-
-            <li>
-              How many maps were in the pool
-            </li>
-
-            <li>
-              Season, when applicable
-            </li>
-
-            <li>
-              Beta status, when applicable
-            </li>
-
-          </ul>
-
-        </div>
-
-      </div>
-
-
-
-      <div
-        id="filters"
-        class="window guide-section"
-      >
-
-        <div class="window-titlebar">
-
-          <span>
-            filters.ini
-          </span>
-
-          <span
-            class="window-icons"
-            aria-hidden="true"
-          >
-            □ ─ ×
-          </span>
-
-        </div>
-
-
-        <div class="window-body">
-
-          <h2>
-            🔎 Map Filters
-          </h2>
-
-
-          <div class="guide-option">
-
-            <strong>
-              🎮 Mode
-            </strong>
-
-            Choose a specific game mode or
-            leave it blank to allow any mode.
-
+        <section class="section" id="about">
+          <div class="section-heading">
+            <div>
+              <p class="section-kicker">09 / Project notes</p>
+              <h2>About TF2 Random Map Picker</h2>
+            </div>
           </div>
 
+          <p>
+            TF2 Random Map Picker was built by Raven as a small Discord utility for people who know they want to play Team Fortress 2 but do not particularly want to decide where.
+          </p>
 
-          <div class="guide-option">
+          <p>
+            The bot supports both quick completely-random rolls and increasingly specific map pools, while keeping rerolls and follow-up choices one click away.
+          </p>
 
-            <strong>
-              🎃 Season
-            </strong>
-
-            Choose Normal, Halloween, or
-            Smissmas.
-
-            Leaving it blank allows maps from
-            any season.
-
+          <div class="about-actions">
+            <a class="button primary" href="/#projects">View project</a>
+            <a class="button" href="https://buymeacoffee.com/ellipticbean" target="_blank" rel="noopener noreferrer">☕ Support development</a>
+            <a class="button" href="#top">↑ Back to top</a>
           </div>
-
-
-          <div class="guide-option">
-
-            <strong>
-              🧪 Beta
-            </strong>
-
-            Beta maps are excluded by default.
-
-            You can instead include beta maps
-            or choose only beta maps.
-
-          </div>
-
-        </div>
+        </section>
 
       </div>
-
-    </section>
-
-
-
-    <!-- =================================================
-         SUPPORTED MODES
-         ================================================= -->
-
-    <section
-      id="modes"
-      class="window guide-section"
-    >
-
-      <div class="window-titlebar">
-
-        <span>
-          supported_modes.txt
-        </span>
-
-        <span
-          class="window-icons"
-          aria-hidden="true"
-        >
-          □ ─ ×
-        </span>
-
-      </div>
-
-
-      <div class="window-body">
-
-        <h2>
-          🎮 Supported Game Modes
-        </h2>
-
-
-        <p>
-          The mode filter includes standard and
-          less-common official TF2 modes.
-        </p>
-
-
-        <div class="mode-grid">
-
-          <span>Capture the Flag</span>
-          <span>Control Points</span>
-          <span>Attack/Defend</span>
-          <span>Payload</span>
-          <span>Payload Race</span>
-          <span>King of the Hill</span>
-          <span>Medieval Mode</span>
-          <span>Mann vs. Machine</span>
-          <span>Player Destruction</span>
-          <span>Robot Destruction</span>
-          <span>PASS Time</span>
-          <span>Special Delivery</span>
-          <span>Territorial Control</span>
-          <span>Mannpower</span>
-          <span>Arena</span>
-          <span>Versus Saxton Hale</span>
-          <span>Zombie Infection</span>
-          <span>Tug of War</span>
-          <span>Hold the Flag</span>
-          <span>Attack/Defend + Payload</span>
-          <span>Domination</span>
-
-        </div>
-
-
-        <p>
-          You can also use
-          <strong>/modes</strong> inside Discord
-          to see the modes currently contained
-          in the bot's database and the number
-          of maps available for each one.
-        </p>
-
-      </div>
-
-    </section>
-
-
-
-    <!-- =================================================
-         RESULT BUTTONS
-         ================================================= -->
-
-    <section
-      id="buttons"
-      class="window guide-section"
-    >
-
-      <div class="window-titlebar">
-
-        <span>
-          result_buttons.txt
-        </span>
-
-        <span
-          class="window-icons"
-          aria-hidden="true"
-        >
-          □ ─ ×
-        </span>
-
-      </div>
-
-
-      <div class="window-body">
-
-        <h2>
-          Buttons Under a Map Result
-        </h2>
-
-
-        <div class="guide-button-list">
-
-
-          <div class="guide-button">
-
-            <strong>
-              🔄 Reroll
-            </strong>
-
-            Picks another map using the same
-            filters from the current roll.
-
-            When possible, it avoids immediately
-            giving you the exact same map again.
-
-          </div>
-
-
-          <div class="guide-button">
-
-            <strong>
-              🎮 Another From This Mode
-            </strong>
-
-            Picks another map from the current
-            map's game mode.
-
-            Applicable season and beta filters
-            are preserved.
-
-          </div>
-
-
-          <div class="guide-button">
-
-            <strong>
-              🎲 Any Map
-            </strong>
-
-            Clears the mode and season filters
-            and rolls from the bot's general
-            non-beta map pool.
-
-          </div>
-
-        </div>
-
-      </div>
-
-    </section>
-
-
-
-    <!-- =================================================
-         OTHER COMMANDS
-         ================================================= -->
-
-    <section
-      id="commands"
-      class="window guide-section"
-    >
-
-      <div class="window-titlebar">
-
-        <span>
-          commands.exe
-        </span>
-
-        <span
-          class="window-icons"
-          aria-hidden="true"
-        >
-          □ ─ ×
-        </span>
-
-      </div>
-
-
-      <div class="window-body">
-
-        <h2>
-          Other Commands
-        </h2>
-
-
-        <div class="guide-command">
-
-          <code>
-            /mapinfo
-          </code>
-
-          <p>
-            Look up a specific TF2 map.
-
-            Start typing the map's name or map
-            code and Discord will show matching
-            maps.
-
-            The result shows its game mode,
-            map code, season, and beta status.
-          </p>
-
-        </div>
-
-
-        <div class="guide-command">
-
-          <code>
-            /modes
-          </code>
-
-          <p>
-            Displays the game modes currently
-            available in the bot's map database,
-            along with their map counts.
-          </p>
-
-        </div>
-
-
-        <div class="guide-command">
-
-          <code>
-            /stats
-          </code>
-
-          <p>
-            Shows statistics for the map
-            database, including standard maps,
-            beta maps, game modes, Normal maps,
-            Halloween maps, and Smissmas maps.
-          </p>
-
-        </div>
-
-
-        <div class="guide-command">
-
-          <code>
-            /help
-          </code>
-
-          <p>
-            Displays an in-Discord explanation
-            of the main map picker features and
-            controls.
-          </p>
-
-        </div>
-
-
-        <div class="guide-command">
-
-          <code>
-            /support
-          </code>
-
-          <p>
-            Shows information about optionally
-            supporting development of the bot
-            and provides a Buy Me a Coffee
-            button.
-          </p>
-
-        </div>
-
-      </div>
-
-    </section>
-
-
-
-    <!-- =================================================
-         NO-SLASH MODE
-         ================================================= -->
-
-    <section
-      id="no-slash"
-      class="window guide-section"
-    >
-
-      <div class="window-titlebar">
-
-        <span>
-          interactive_picker.beta
-        </span>
-
-        <span
-          class="window-icons"
-          aria-hidden="true"
-        >
-          □ ─ ×
-        </span>
-
-      </div>
-
-
-      <div class="window-body">
-
-        <h2>
-          🖱️ Using the Bot Without Slash Commands
-        </h2>
-
-
-        <div class="guide-coming-soon">
-
-          <strong>
-            🚧 Interactive picker currently being added
-          </strong>
-
-
-          <p>
-            A no-slash interface is currently
-            being developed.
-          </p>
-
-
-          <p>
-            The planned system lets you mention
-            the bot to open an interactive map
-            picker, then choose your options
-            using Discord buttons and menus
-            instead of typing a command.
-          </p>
-
-
-          <p>
-            The existing slash commands will
-            remain available as another way to
-            use the bot.
-          </p>
-
-        </div>
-
-      </div>
-
-    </section>
-
-
-
-    <!-- =================================================
-         TROUBLESHOOTING
-         ================================================= -->
-
-    <section
-      id="troubleshooting"
-      class="window guide-section"
-    >
-
-      <div class="window-titlebar">
-
-        <span>
-          troubleshooting.txt
-        </span>
-
-        <span
-          class="window-icons"
-          aria-hidden="true"
-        >
-          □ ─ ×
-        </span>
-
-      </div>
-
-
-      <div class="window-body">
-
-        <h2>
-          Troubleshooting
-        </h2>
-
-
-        <div class="guide-trouble-item">
-
-          <h3>
-            No maps match my filters
-          </h3>
-
-          <p>
-            Some combinations of mode, season,
-            and beta settings may have no
-            matching maps.
-
-            Try removing one of your filters or
-            using a broader setting.
-          </p>
-
-        </div>
-
-
-        <div class="guide-trouble-item">
-
-          <h3>
-            Why are beta maps not appearing?
-          </h3>
-
-          <p>
-            Beta maps are excluded by default.
-
-            Choose
-            <strong>Include Beta Maps</strong>
-            or
-            <strong>Beta Maps Only</strong>
-            when using the beta option.
-          </p>
-
-        </div>
-
-
-        <div class="guide-trouble-item">
-
-          <h3>
-            What is the map code?
-          </h3>
-
-          <p>
-            The map code is TF2's internal map
-            identifier, such as
-            <code>pl_upward</code>.
-
-            It is displayed separately from the
-            readable map name.
-          </p>
-
-        </div>
-
-
-        <div class="guide-trouble-item">
-
-          <h3>
-            What does Map Pool mean?
-          </h3>
-
-          <p>
-            Map Pool is the number of maps that
-            matched your selected filters before
-            the bot randomly chose one.
-          </p>
-
-        </div>
-
-      </div>
-
-    </section>
-
-
-
-    <!-- =================================================
-         ABOUT
-         ================================================= -->
-
-    <section class="window guide-section">
-
-      <div class="window-titlebar">
-
-        <span>
-          about_this_bot.txt
-        </span>
-
-        <span
-          class="window-icons"
-          aria-hidden="true"
-        >
-          □ ─ ×
-        </span>
-
-      </div>
-
-
-      <div class="window-body">
-
-        <h2>
-          About TF2 Random Map Picker
-        </h2>
-
-
-        <p>
-          TF2 Random Map Picker was built by
-          Raven as a small Discord utility for
-          people who know they want to play
-          Team Fortress 2 but don't particularly
-          want to decide where.
-        </p>
-
-
-        <p>
-          The bot is designed to support both
-          quick completely-random rolls and
-          increasingly specific map pools.
-        </p>
-
-
-        <div class="button-row">
-
-          <a
-            class="btn primary"
-            href="/#projects"
-          >
-            view project
-          </a>
-
-
-          <a
-            class="btn"
-            href="https://buymeacoffee.com/ellipticbean"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            ☕ support development
-          </a>
-
-        </div>
-
-      </div>
-
-    </section>
-
-
-
-    <!-- =================================================
-         BACK TO TOP
-         ================================================= -->
-
-    <div class="guide-bottom-nav">
-
-  <a
-    class="btn"
-    href="/#projects"
-  >
-    ← Project Explorer
-  </a>
-
-  <a
-    class="btn"
-    href="#top"
-  >
-    ↑ Back to Top
-  </a>
-
     </div>
 
-
-    <!-- =================================================
-         FOOTER
-         ================================================= -->
-
-    <footer class="footer window">
-
-      <span>
-        Raven.exe / TF2 Map Picker
-      </span>
-
-      <span>
-        2026
-      </span>
-
+    <footer class="bottom-row">
+      <span class="mono">Raven.exe / TF2 Random Map Picker</span>
+      <span>2026</span>
     </footer>
-
-
   </main>
-<script>
-  const guideNavLinks = [
-    ...document.querySelectorAll(
-      '.guide-sticky-nav a[href^="#"]'
-    )
-  ];
 
-  const guideSections =
-    guideNavLinks
-      .map(link => {
-        const target =
-          link.getAttribute("href");
+  <script>
+    const navLinks = [
+      ...document.querySelectorAll('.toc a[href^="#"]')
+    ];
 
-        return document.querySelector(target);
-      })
+    const sections = navLinks
+      .map(link => document.querySelector(link.getAttribute('href')))
       .filter(Boolean);
 
+    function updateActiveSection() {
+      const readingLine = window.innerWidth <= 980 ? 150 : 118;
+      let current = sections[0]?.id;
 
-  function setActiveGuideLink(sectionId) {
+      sections.forEach(section => {
+        if (section.getBoundingClientRect().top <= readingLine) {
+          current = section.id;
+        }
+      });
 
-    guideNavLinks.forEach(link => {
+      navLinks.forEach(link => {
+        const active = link.getAttribute('href') === `#${current}`;
+        link.classList.toggle('active', active);
 
-      const isActive =
-        link.getAttribute("href") ===
-        `#${sectionId}`;
-
-      link.classList.toggle(
-        "active",
-        isActive
-      );
-
-      if (isActive) {
-        link.setAttribute(
-          "aria-current",
-          "location"
-        );
-      } else {
-        link.removeAttribute(
-          "aria-current"
-        );
-      }
-
-    });
-
-  }
-
-
-  function updateActiveGuideSection() {
-
-    const readingLine = 150;
-
-    let currentSection =
-      guideSections[0]?.id;
-
-    guideSections.forEach(section => {
-
-      const sectionTop =
-        section.getBoundingClientRect().top;
-
-      if (sectionTop <= readingLine) {
-        currentSection = section.id;
-      }
-
-    });
-
-    if (currentSection) {
-      setActiveGuideLink(
-        currentSection
-      );
+        if (active) {
+          link.setAttribute('aria-current', 'location');
+        } else {
+          link.removeAttribute('aria-current');
+        }
+      });
     }
 
-  }
-
-
-  window.addEventListener(
-    "scroll",
-    updateActiveGuideSection,
-    {
-      passive: true
-    }
-  );
-
-
-  window.addEventListener(
-    "load",
-    updateActiveGuideSection
-  );
-
-
-  updateActiveGuideSection();
-</script>
+    window.addEventListener('scroll', updateActiveSection, { passive: true });
+    window.addEventListener('resize', updateActiveSection);
+    window.addEventListener('load', updateActiveSection);
+    updateActiveSection();
+  </script>
 </body>
-
 </html>
