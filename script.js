@@ -476,14 +476,9 @@ async function loadSteamStatus() {
   }
 }
 
-document.addEventListener(
-  "DOMContentLoaded",
-  () => {
-    loadSteamStatus();
+loadSteamStatus();
 
-    setInterval(
-      loadSteamStatus,
-      60000
-    );
-  }
+setInterval(
+  loadSteamStatus,
+  60000
 );
