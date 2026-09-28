@@ -533,7 +533,54 @@ function renderProjectCards(grid) {
   });
 }
 
+function getProjectSearchResults(query) {
+  const search = query
+    .trim()
+    .toLowerCase();
 
+  if (!search) {
+    return [];
+  }
+
+  return PROJECTS.filter(project => {
+    const searchableText = [
+      project.title,
+      project.type,
+      project.group,
+      project.category,
+      project.description,
+      ...(project.tags || [])
+    ]
+      .filter(Boolean)
+      .join(" ")
+      .toLowerCase();
+
+    return searchableText.includes(search);
+  });
+}
+
+
+function renderProjectSearch(grid, query) {
+  const results =
+    getProjectSearchResults(query);
+
+  if (results.length === 0) {
+    grid.innerHTML = `
+      <div class="project-search-empty">
+        <strong>No projects found.</strong>
+        <span>Try another name, tag, or category.</span>
+      </div>
+    `;
+
+    return;
+  }
+
+  results.forEach(project => {
+    grid.appendChild(
+      createProjectCard(project)
+    );
+  });
+}
 function renderProjects() {
   const grid =
     document.getElementById("projectGrid");
