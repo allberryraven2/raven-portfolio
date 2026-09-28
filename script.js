@@ -49,13 +49,13 @@ const PROJECTS = [
       "HTML",
       "CSS",
       "JavaScript",
-      "Netlify",
+      "Cloudflare Workers",
       "Steam API"
     ],
     links: [
       {
         label: "open website",
-        url: "https://ellipticbean.netlify.app/",
+        url: "https://game-night-roulette.ellipticbean.workers.dev/",
         primary: true
       }
     ]
