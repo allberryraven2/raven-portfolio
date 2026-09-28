@@ -26,6 +26,7 @@ const PROJECTS = [
     icon: "🧾",
     status: "IN DEVELOPMENT",
     featured: false,
+    image: "commission-manager-preview.png",
     description:
       "A Discord bot for keeping creator commissions organized, including commission status, deadlines, and creator/client workflow.",
     tags: ["TypeScript", "Discord.js", "PostgreSQL"],
