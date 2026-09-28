@@ -13,6 +13,7 @@ const PROJECTS = [
     description:
       "A Discord bot I made for picking random Team Fortress 2 maps and modes, including seasonal and less-common official modes.",
     tags: ["JavaScript", "Discord.js", "TF2"],
+    note: "Source code currently private.",
     links: [
       // Add an invite/project link here later if you want.
     ]
@@ -27,6 +28,7 @@ const PROJECTS = [
     description:
       "A Discord bot for keeping creator commissions organized, including commission status, deadlines, and creator/client workflow.",
     tags: ["TypeScript", "Discord.js", "PostgreSQL"],
+    note: "Currently in development.",
     links: [
       // Add a public link here later.
     ]
@@ -197,8 +199,8 @@ function renderProjects() {
 
         ${
           actionLinks
-            ? `<div class="project-actions">${actionLinks}</div>`
-            : `<p><small>Public link coming later.</small></p>`
+  ? `<div class="project-actions">${actionLinks}</div>`
+  : `<p><small>${project.note || "No public link available."}</small></p>`
         }
       </div>
     `;
