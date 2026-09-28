@@ -85,26 +85,30 @@ const PROJECTS = [
     status: "ACTIVE",
     featured: false,
     image: "tf2-map-picker-preview-v2.png",
+
     description:
       "A Discord bot I made for picking random Team Fortress 2 maps and modes, including seasonal and less-common official modes.",
-    tags: [
-    tags: [
-  "JavaScript",
-  "Discord.js",
-  "TF2",
-  "RNG"
-],
 
-note: "Source code currently private.",
+    tags: [
+      "JavaScript",
+      "Discord.js",
+      "TF2",
+      "RNG"
+    ],
 
-links: [
+    note: "Source code currently private.",
+
+    links: [
+      {
+        label: "how to use",
+        url: "tf2-map-picker-guide.html",
+        primary: true
+      }
+    ]
+  },
+
   {
-    label: "how to use",
-    url: "tf2-map-picker-guide.html",
-    primary: true
-  }
-]
-
+    title: "Commission Manager",
   {
     title: "Commission Manager",
     type: "Discord Bot",
