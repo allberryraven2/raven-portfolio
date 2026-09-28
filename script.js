@@ -103,6 +103,11 @@ const PROJECTS = [
         label: "how to use",
         url: "tf2-map-picker-guide.html",
         primary: true
+      },
+      {
+        label: "add to Discord",
+        url: "https://discord.com/oauth2/authorize?client_id=1553074819346595840&permissions=84992&integration_type=0&scope=bot+applications.commands",
+        primary: false
       }
     ]
   },
