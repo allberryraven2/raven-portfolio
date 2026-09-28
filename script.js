@@ -40,7 +40,7 @@ const PROJECTS = [
     icon: "🎲",
     status: "LIVE",
     featured: true,
-    image: "game-night-roulette.png",
+    image: "game-night-roulette-preview.png",
     description:
       "A game picker I built for deciding what to play. It supports custom game libraries, Steam login and import, group-size filters, playtime, and live Steam player counts.",
     tags: [
