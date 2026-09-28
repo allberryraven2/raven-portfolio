@@ -1,4 +1,4 @@
-// ======================================================
+ // ======================================================
 // RAVEN PORTFOLIO
 // Edit the data below to update the site later.
 // ======================================================
@@ -832,7 +832,14 @@ renderLinkGroups();
 renderMusicLinks();
 showPage(routeFromHash());
 loadLastfmTracks();
-
+document
+  .getElementById("projectSearch")
+  ?.addEventListener(
+    "input",
+    () => {
+      renderProjects();
+    }
+  );
 setInterval(
   loadLastfmTracks,
   LASTFM_REFRESH_INTERVAL
