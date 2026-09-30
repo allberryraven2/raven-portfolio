@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#10140f" />
+
+  <title>Creator Commission Manager | Raven</title>
+  <meta
+    name="description"
+    content="Creator Commission Manager is a Discord bot for managing creator commission queues, requests, deadlines, workflow, payments, notes, and availability."
+  />
+
+  <link rel="stylesheet" href="../style.css" />
+
+  <style>
+    .bot-hero-grid {
+      display: grid;
+      grid-template-columns: minmax(140px, 220px) 1fr;
+      gap: 2rem;
+      align-items: center;
+    }
+
+    .bot-icon-wrap {
+      display: flex;
+      flex-direction: column;
+      gap: 0.65rem;
+    }
+
+    .bot-icon {
+      width: 100%;
+      max-width: 220px;
+      aspect-ratio: 1 / 1;
+      object-fit: cover;
+      border-radius: 14px;
+      display: block;
+    }
+
+    .bot-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+
+    .bot-grid .window {
+      height: 100%;
+    }
+
+    .bot-status-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      margin-top: 1rem;
+    }
+
+    .bot-status-row span {
+      display: inline-block;
+      padding: 0.35rem 0.65rem;
+      border: 1px solid currentColor;
+      border-radius: 999px;
+      opacity: 0.9;
+    }
+
+    .command-list {
+      display: grid;
+      gap: 0.8rem;
+    }
+
+    .command-item {
+      display: grid;
+      grid-template-columns: minmax(180px, 240px) 1fr;
+      gap: 1rem;
+      align-items: start;
+      padding-bottom: 0.8rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+    }
+
+    .command-item:last-child {
+      border-bottom: 0;
+      padding-bottom: 0;
+    }
+
+    .command-item code {
+      font: inherit;
+      font-weight: 700;
+      word-break: break-word;
+    }
+
+    .legal-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin-top: 1rem;
+    }
+
+    .muted {
+      opacity: 0.75;
+    }
+
+    @media (max-width: 760px) {
+      .bot-hero-grid,
+      .bot-grid,
+      .command-item {
+        grid-template-columns: 1fr;
+      }
+
+      .bot-icon {
+        max-width: 180px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="desktop-noise" aria-hidden="true"></div>
+
+  <main class="shell">
+
+    <header class="topbar window">
+      <a class="brand" href="../" aria-label="Back to Raven's portfolio">
+        <span class="brand-dot"></span>
+        <span>Raven.exe</span>
+      </a>
+
+      <nav class="nav" aria-label="Creator Commission Manager navigation">
+        <a href="../">portfolio</a>
+        <a href="#features">features</a>
+        <a href="#commands">commands</a>
+        <a href="./privacy.html">privacy</a>
+        <a href="./terms.html">terms</a>
+      </nav>
+
+      <div class="desktop-status" aria-hidden="true">
+        <span>● online</span>
+      </div>
+    </header>
+
+
+    <section class="page active" aria-labelledby="bot-title">
+
+      <div class="window hero-window">
+        <div class="window-titlebar">
+          <span>Creator Commission Manager / overview</span>
+          <span class="window-icons" aria-hidden="true">□ ─ ×</span>
+        </div>
+
+        <div class="window-body">
+          <div class="bot-hero-grid">
+
+            <div class="bot-icon-wrap">
+              <img
+                class="bot-icon"
+                src="../image01.jpg"
+                alt="Creator Commission Manager icon"
+              >
+              <span class="photo-caption">icon.png</span>
+            </div>
+
+            <div class="hero-copy">
+              <p class="eyebrow">Discord bot</p>
+
+              <h1 id="bot-title">Creator Commission Manager</h1>
+
+              <p class="subtitle">
+                Commission queues and workflow management inside Discord.
+              </p>
+
+              <p>
+                Built for artists, crafters, and other creators who want to manage
+                requests without moving the entire commission process into another app.
+                Create queues, accept customer requests, track progress, manage deadlines,
+                record payment status, and keep creator notes in one place.
+              </p>
+
+              <div class="button-row">
+                <a
+                  class="btn primary"
+                  href="https://discord.com/oauth2/authorize?client_id=1553533744936259654"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Add to Discord
+                </a>
+
+                <a class="btn" href="#features">
+                  view features
+                </a>
+
+                <a class="btn" href="../">
+                  back to portfolio
+                </a>
+              </div>
+
+              <div class="bot-status-row" aria-label="Bot information">
+                <span>TypeScript</span>
+                <span>Discord.js</span>
+                <span>PostgreSQL</span>
+                <span>Railway</span>
+              </div>
+
+              <p class="muted">
+                Icon art by maddel_art.
+              </p>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+
+      <div id="features" class="section-heading">
+        <p class="eyebrow">C:\Users\Raven\Projects\CreatorCommissionManager</p>
+        <h2>Features</h2>
+        <p>
+          The bot handles the commission workflow from an open queue through delivery.
+        </p>
+      </div>
+
+      <div class="bot-grid">
+
+        <div class="window">
+          <div class="window-titlebar">
+            <span>queues.exe</span>
+            <span class="window-icons" aria-hidden="true">□ ─ ×</span>
+          </div>
+          <div class="window-body">
+            <h3>Commission queues</h3>
+            <p>
+              Create multiple queues with their own descriptions, slot limits, and
+              availability. Open, close, edit, archive, restore, or delete queues as needed.
+            </p>
+          </div>
+        </div>
+
+        <div class="window">
+          <div class="window-titlebar">
+            <span>workflow.exe</span>
+            <span class="window-icons" aria-hidden="true">□ ─ ×</span>
+          </div>
+          <div class="window-body">
+            <h3>Request workflow</h3>
+            <p>
+              Customers submit requests from a public panel. Creators can accept or reject,
+              start work, wait on the customer, resume, mark work ready, deliver it, and
+              finish the commission after customer confirmation.
+            </p>
+          </div>
+        </div>
+
+        <div class="window">
+          <div class="window-titlebar">
+            <span>deadlines.ini</span>
+            <span class="window-icons" aria-hidden="true">□ ─ ×</span>
+          </div>
+          <div class="window-body">
+            <h3>Deadlines and reminders</h3>
+            <p>
+              Set commission deadlines and a creator timezone. Automatic reminders help
+              surface upcoming and overdue work without requiring a separate calendar.
+            </p>
+          </div>
+        </div>
+
+        <div class="window">
+          <div class="window-titlebar">
+            <span>tracking.ini</span>
+            <span class="window-icons" aria-hidden="true">□ ─ ×</span>
+          </div>
+          <div class="window-body">
+            <h3>Price and payment tracking</h3>
+            <p>
+              Record commission prices and payment status, including unpaid, deposit paid,
+              partially paid, and paid in full. The bot tracks status only and does not
+              process payments.
+            </p>
+          </div>
+        </div>
+
+        <div class="window">
+          <div class="window-titlebar">
+            <span>notes.txt</span>
+            <span class="window-icons" aria-hidden="true">□ ─ ×</span>
+          </div>
+          <div class="window-body">
+            <h3>Creator notes</h3>
+            <p>
+              Keep private notes attached to commission requests for internal reference
+              while the rest of the workflow stays organized in Discord.
+            </p>
+          </div>
+        </div>
+
+        <div class="window">
+          <div class="window-titlebar">
+            <span>access.cfg</span>
+            <span class="window-icons" aria-hidden="true">□ ─ ×</span>
+          </div>
+          <div class="window-body">
+            <h3>Server access controls</h3>
+            <p>
+              Server owners can allow commission management for everyone, restrict it to
+              the server owner, or require a selected Discord role. Customer request
+              actions remain separate from creator management access.
+            </p>
+          </div>
+        </div>
+
+      </div>
+
+
+      <div id="commands" class="section-heading">
+        <p class="eyebrow">commission.exe /help</p>
+        <h2>Core Commands</h2>
+        <p>
+          Everything is organized under the <code>/commission</code> command.
+        </p>
+      </div>
+
+      <div class="window">
+        <div class="window-titlebar">
+          <span>commands.txt</span>
+          <span class="window-icons" aria-hidden="true">□ ─ ×</span>
+        </div>
+
+        <div class="window-body command-list">
+
+          <div class="command-item">
+            <code>/commission help</code>
+            <span>Show the bot's built-in help and workflow information.</span>
+          </div>
+
+          <div class="command-item">
+            <code>/commission setup</code>
+            <span>Create a new commission queue.</span>
+          </div>
+
+          <div class="command-item">
+            <code>/commission list</code>
+            <span>View your current non-archived commission queues.</span>
+          </div>
+
+          <div class="command-item">
+            <code>/commission panel</code>
+            <span>Post a public commission panel customers can use to submit requests.</span>
+          </div>
+
+          <div class="command-item">
+            <code>/commission open / close</code>
+            <span>Control whether a queue is currently accepting requests.</span>
+          </div>
+
+          <div class="command-item">
+            <code>/commission edit</code>
+            <span>Update a queue's name, description, or slot limit.</span>
+          </div>
+
+          <div class="command-item">
+            <code>/commission archive / restore</code>
+            <span>Move completed queues out of the active list and restore them later.</span>
+          </div>
+
+          <div class="command-item">
+            <code>/commission access</code>
+            <span>
+              Let the server owner view or change who can use commission-management tools.
+            </span>
+          </div>
+
+        </div>
+      </div>
+
+
+      <div class="section-heading">
+        <p class="eyebrow">data_and_privacy.txt</p>
+        <h2>Data & Privacy</h2>
+      </div>
+
+      <div class="window">
+        <div class="window-titlebar">
+          <span>privacy_summary.txt</span>
+          <span class="window-icons" aria-hidden="true">□ ─ ×</span>
+        </div>
+
+        <div class="window-body">
+          <p>
+            Creator Commission Manager stores the Discord identifiers and commission data
+            needed to run its queues and workflow. Payment information is limited to the
+            price and payment status entered into the bot. It does not collect card,
+            banking, or payment-account credentials and does not process payments.
+          </p>
+
+          <p>
+            When the bot is removed from a Discord server, data associated with that server
+            is automatically deleted from the bot's database.
+          </p>
+
+          <div class="legal-row">
+            <a class="btn" href="./privacy.html">Privacy Policy</a>
+            <a class="btn" href="./terms.html">Terms of Service</a>
+            <a class="btn" href="mailto:ravenberries@proton.me">Contact</a>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+
+    <footer class="footer window">
+      <span>Creator Commission Manager</span>
+      <span>
+        <a href="../">Raven.exe</a> • <span id="year"></span>
+      </span>
+    </footer>
+
+  </main>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
