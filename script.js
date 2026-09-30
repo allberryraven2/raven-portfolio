@@ -118,7 +118,7 @@ const PROJECTS = [
     group: "Bots",
     category: "Organization",
     icon: "🧾",
-    status: "IN DEVELOPMENT",
+    status: "ACTIVE",
     featured: false,
     image: "commission-manager-preview.png",
     description:
@@ -128,9 +128,16 @@ const PROJECTS = [
       "Discord.js",
       "PostgreSQL"
     ],
-    note: "Currently in development.",
     links: [
-      // Add a public link here later.
+      {
+        label: "Add Bot",
+        url: "https://discord.com/oauth2/authorize?client_id=1553533744936259654",
+        primary: true
+      },
+      {
+        label: "View Guide",
+        url: "https://ellipticbean.github.io/raven-portfolio/creator-commission-manager/"
+      }
     ]
   },
 
